@@ -237,6 +237,16 @@ class Proposals(unittest.TestCase):
         self.assertEqual([e["name"] for e in reg], ["Gone Co."])
         self.assertEqual(reg[0]["removed_on"], "2026-12-01")
 
+    def test_a_new_row_takes_its_own_notice_date_and_a_start_proposal_invents_none(self):
+        annual = {"document_number": "2026-11571", "publication_date": "2026-06-10", "citation": "91 FR 35189"}
+        later = {"document_number": "2026-22840", "publication_date": "2026-11-10", "citation": "91 FR 72536"}
+        nio = row("NIO, Inc.", source_doc="2026-11571")
+        start = P.build("x", "start", [annual, later], Parsed(roster=[nio]))
+        self.assertEqual(start["publication_date"], "2026-11-10")
+        self.assertEqual(P.apply(start, [], [])[0][0]["date_added"], "")      # not the proposal's date
+        add = P.build("x", "addition", [annual, later], Parsed(adds=[nio]))
+        self.assertEqual(P.apply(add, [], [])[0][0]["date_added"], "2026-06-10")
+
     def test_removal_not_on_the_list_holds(self):
         prop = P.build("x", "removal", [self.DOC], Parsed(removes=[{"name": "Nobody Ltd.", "reason": "r"}]))
         self.assertTrue(P.holds(prop, P.compare(prop, [row("Stay Co.")])))
@@ -274,6 +284,14 @@ class Page(unittest.TestCase):
         page.assert_offline(html)
         with self.assertRaises(ValueError):
             page.assert_offline('<img src="https://x">')
+
+    def test_listed_in_is_the_date_of_the_row_s_own_notice(self):
+        rows = [{"name": "N", "aka": [], "parent": "", "source_doc": "2026-11571", "date_added": "2026-11-10"}]
+        docs = [{"document_number": "2026-11571", "publication_date": "2026-06-10"},
+                {"document_number": "2026-22840", "publication_date": "2026-11-10"}]
+        html = page.build({"label": "L"}, rows, [], docs)
+        self.assertIn("<th><button>Listed in</button></th>", html)
+        self.assertIn("<td>2026-06-10</td></tr>", html)
 
 
 if __name__ == "__main__":

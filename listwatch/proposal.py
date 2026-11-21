@@ -128,6 +128,7 @@ def apply(prop: dict, current: list[dict], register: list[dict], *,
     pairs = _match(targets, current, list(equivalents))
     rename = {key(targets[i]["name"]): current[j]["name"] for i, j in pairs.items()}
     rows: list[dict] = []
+    doc_dates = {d["document_number"]: d.get("publication_date", "") for d in prop.get("documents", [])}
     for i, t in enumerate(targets):
         row = dict(t)
         if t.get("parent"):
@@ -143,8 +144,13 @@ def apply(prop: dict, current: list[dict], register: list[dict], *,
                 if old.get(f) not in (None, "", []):
                     row[f] = old[f]
             row["date_added"] = old.get("date_added") or ""
+        elif prop["kind"] == "start":
+            # A starting proposal rebuilds the list from saved notices; it cannot tell a newly listed
+            # company from one an earlier copy missed, so it does not invent a date.
+            row["date_added"] = row.get("date_added") or ""
         else:
-            row["date_added"] = row.get("date_added") or prop["publication_date"]
+            # the date of the notice that lists it, not the date of the proposal
+            row["date_added"] = row.get("date_added") or doc_dates.get(row.get("source_doc", ""), prop["publication_date"])
         rows.append(row)
 
     matched = set(pairs.values())
