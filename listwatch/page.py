@@ -49,6 +49,9 @@ def _a(url: str, text: str) -> str:
 def build(meta: dict, rows: list[dict], register: list[dict], documents: list[dict]) -> str:
     """`meta`: label, gloss, authority, as_of, official_url, official_label, repo_url (optional)."""
     tops = {r["name"] for r in rows if not r.get("parent")}
+    # "Listed in": the date of the notice each row comes from. The date a company was first
+    # designated needs the earlier annual lists, which this page does not read yet.
+    listed_in = {d["document_number"]: d.get("publication_date", "") for d in documents}
     body_rows = []
     for r in sorted(rows, key=lambda r: (r.get("parent") or r["name"]).lower() + "\x00" + ("" if not r.get("parent") else r["name"].lower())):
         under = r.get("parent", "")
@@ -58,7 +61,7 @@ def build(meta: dict, rows: list[dict], register: list[dict], documents: list[di
             f'<td>{escape("; ".join(r.get("aka", [])))}</td>'
             f"<td>{escape(under)}</td>"
             f'<td data-v="{int(r.get("source_page") or 0):08d}">{_a(r.get("source_url", ""), r.get("source_cite", "") or "source")}</td>'
-            f'<td>{escape(r.get("date_added", "") or "")}</td>'
+            f'<td>{escape(listed_in.get(r.get("source_doc", ""), ""))}</td>'
             "</tr>")
     reg_rows = [
         '<tr class="removed">'
@@ -85,7 +88,7 @@ def build(meta: dict, rows: list[dict], register: list[dict], documents: list[di
 <span>Authority: {escape(meta.get("authority", ""))}</span><span>Official list: {_a(meta.get("official_url", ""), meta.get("official_label", "DoW PDF"))}</span></div>
 <label for="q" class="note">Filter</label><br><input id="q" type="search" placeholder="Company, alias or parent" autocomplete="off">
 <div class="wrap"><table id="list"><thead><tr><th><button>Company</button></th><th><button>Also known as</button></th>
-<th><button>Listed under</button></th><th><button>Source (page)</button></th><th><button>Added</button></th></tr></thead>
+<th><button>Listed under</button></th><th><button>Source (page)</button></th><th><button>Listed in</button></th></tr></thead>
 <tbody>
 {chr(10).join(body_rows)}
 </tbody></table></div>
@@ -97,7 +100,7 @@ def build(meta: dict, rows: list[dict], register: list[dict], documents: list[di
 </tbody></table></div>
 <h2>How this page was made</h2>
 <ol>
-<li>A daily script asks the Federal Register for new notices about this list.</li>
+<li>A scheduled script asks the Federal Register for new notices about this list.</li>
 <li>Each notice is saved, with its SHA-256, before anything reads it.</li>
 <li>Fixed rules (no AI) turn the saved text into rows, each with its page.</li>
 <li>One AI step exists, only for a notice the rules cannot read; code checks its answer.</li>
