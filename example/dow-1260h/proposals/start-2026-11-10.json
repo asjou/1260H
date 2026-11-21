@@ -1,0 +1,2977 @@
+{
+  "schema": "listwatch/proposal@1",
+  "id": "start-2026-11-10",
+  "list": "dow-1260h",
+  "kind": "start",
+  "publication_date": "2026-11-10",
+  "machine_read": false,
+  "note": "Starting proposal: the saved notices replayed in order. Approving it adds page and parent to every row and records the removals; check the differences first.",
+  "documents": [
+    {
+      "document_number": "2026-11571",
+      "title": "Notice of Availability of Designation of Chinese Military Companies",
+      "type": "Notice",
+      "publication_date": "2026-06-10",
+      "citation": "91 FR 35189",
+      "start_page": 35189,
+      "html_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf",
+      "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/06/10/2026-11571.txt",
+      "sha256": "88197a379bedb74a2553d094fdd687ea9ff25573ece1f5973c466b3bf9e25364"
+    },
+    {
+      "document_number": "2026-22840",
+      "title": "Notice of Removal of Designated Chinese Military Company",
+      "type": "Notice",
+      "publication_date": "2026-11-10",
+      "citation": "91 FR 72536",
+      "start_page": 72536,
+      "html_url": "https://www.federalregister.gov/documents/2026/11/10/2026-22840/notice-of-removal-of-designated-chinese-military-company",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-11-10/pdf/2026-22840.pdf",
+      "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/11/10/2026-22840.txt",
+      "sha256": "f94775010b1f133013019127ca655527e4d708c427cf3f7daf2fa6bcc38adfbc"
+    }
+  ],
+  "roster": [
+    {
+      "name": "360 Security Technology, Inc.",
+      "aka": [
+        "Qihoo 360"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Aerospace CH UAV Co., Ltd.",
+      "aka": [
+        "CH UAV"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Aerosun Corporation",
+      "aka": [
+        "Aerosun"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Alibaba Group Holding Limited",
+      "aka": [
+        "Alibaba"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Autel Intelligent Technology Corp., Ltd.",
+      "aka": [
+        "Autel Technology"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Autel Robotics Co., Ltd.",
+      "aka": [
+        "Autel Robotics"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Autel Intelligent Technology Corp., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Aviation Industry Corporation of China, Ltd.",
+      "aka": [
+        "AVIC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Align Aerospace LLC",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Avicopter PLC",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Aerospace Systems Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Airborne Systems Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Asset Management Corporation Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Aviation High-Technology Company Limited",
+      "aka": [
+        "AVIC Aviation Hi-Tech"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Chengdu Aircraft Co., Ltd.",
+      "aka": [
+        "Zhonghang Electronic Measuring Instruments Company Limited (ZEMIC)"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Electromechanical Systems Co. Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Heavy Machinery Company Limited",
+      "aka": [
+        "AVIC Heavy Machinery"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC JONHON Optronic Technology Co., Ltd.",
+      "aka": [
+        "AVIC Jonhon"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Shenyang Aircraft Company Limited",
+      "aka": [
+        "AVIC Shenyang"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "AVIC Xi'an Aircraft Industry Group Company Ltd.",
+      "aka": [
+        "Xi'an Aircraft Industry Group Co., Ltd."
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Changhe Aircraft Industries (Group) Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Cirrus Design Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Continental Aerospace Technologies, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Jiangxi Hongdu Aviation Industry Co., Ltd.",
+      "aka": [
+        "Hongdu Aviation"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Shenyang Aircraft Design Institute",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35189",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Aviation Industry Corporation of China, Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35189",
+      "source_page": 35189,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=1"
+    },
+    {
+      "name": "Baicells Technologies Co., Ltd.",
+      "aka": [
+        "Baicells"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Baidu, Inc.",
+      "aka": [
+        "Baidu"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Beijing Zhidao Chuangyu Information Technology Co., Ltd.",
+      "aka": [
+        "Knownsec"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "BGI Group",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "BGI Americas Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "BGI Genomics Co., Ltd.",
+      "aka": [
+        "BGI"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Complete Genomics, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Forensic Genomics International",
+      "aka": [
+        "FGI"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "GBI Diagnostics, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Innomics, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "STomics Americas, Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "BGI Group",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "BOE Technology Group Co., Ltd.",
+      "aka": [
+        "BOE"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "BYD Company Limited",
+      "aka": [
+        "BYD"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CALB Group Co., Ltd.",
+      "aka": [
+        "CALB"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CETC Cyberspace Security Technology Co., Ltd.",
+      "aka": [
+        "Chen Du Westone Information Industry Co., Ltd."
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CETC Digital Technology Co., Ltd.",
+      "aka": [
+        "Shanghai East China Computer Co., Ltd."
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CETC Potevio Science & Technology Co., Ltd.",
+      "aka": [
+        "Guangzhou GCI Science & Technology Co., Ltd."
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "ChangXin Memory Technologies, Inc.",
+      "aka": [
+        "CXMT"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Chengdu JOUAV Automation Tech Co., Ltd.",
+      "aka": [
+        "JOUAV"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Chengdu Mengsheng Electronic Technology Co., Ltd.",
+      "aka": [
+        "M&S Electronics"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Aerospace Science and Industry Corporation Limited",
+      "aka": [
+        "CASIC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Addisino Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Aerospace Science and Industry Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Aerospace Precision Products Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Aerospace Science and Industry Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Aisino Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Aerospace Science and Industry Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Aerospace Automotive Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Aerospace Science and Industry Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Cargo Airlines Co., Ltd.",
+      "aka": [
+        "CCA"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Communications Construction Group (Limited)",
+      "aka": [
+        "CCCG"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CCCC Design and Consulting Group Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CCCC First Harbor Engineering Bureau Co. Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CCCC Second Navigation Engineering Bureau Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "CCCC Third Navigation Engineering Bureau Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Airport Construction Group Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Communications Construction (USA) Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Communications Construction Company Limited",
+      "aka": [
+        "CCCC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Transportation Materials Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "John Holland Group Pty Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "John Holland Services Pty Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "Shanghai Zhenhua Shipping Co. Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "ZPMC North America, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35190",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Communications Construction Group (Limited)",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35190",
+      "source_page": 35190,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=2"
+    },
+    {
+      "name": "China Construction Technology Co. Ltd.",
+      "aka": [
+        "CCTC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China COSCO SHIPPING Corporation Limited",
+      "aka": [
+        "COSCO SHIPPING"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Ocean Shipping Company Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China COSCO SHIPPING Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "COSCO SHIPPING (North America) Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China COSCO SHIPPING Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "COSCO SHIPPING Logistics Supply Chain Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China COSCO SHIPPING Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Shanghai Ship and Shipping Research",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China COSCO SHIPPING Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Electronics Corporation",
+      "aka": [
+        "CEC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Information Security Research Institute",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "IRICO Group Company, Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Shenzhen CEC Blue Ocean Holdings Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "The 6th Research Institute of CEC",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Electronics Technology Group Corporation",
+      "aka": [
+        "CETC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "14th Research Institute of CETC",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Technology Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "15th Research Institute of CETC",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Technology Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "CETC Research Institute 32",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Electronics Technology Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China General Nuclear Power Corporation",
+      "aka": [
+        "CGN"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China International Marine Containers (Group) Co., Ltd.",
+      "aka": [
+        "CIMC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Mobile Communications Group Co., Ltd.",
+      "aka": [
+        "China Mobile Comm"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Aspire Technologies (Shenzhen) Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Mobile Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Mobile Hong Kong (BVI) Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Mobile Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Mobile Limited",
+      "aka": [
+        "China Mobile"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Mobile Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China National Chemical Corporation Ltd.",
+      "aka": [
+        "ChemChina"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China National Chemical Engineering Group Corporation",
+      "aka": [
+        "CNCEC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China National Nuclear Corporation",
+      "aka": [
+        "CNNC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China National Offshore Oil Corporation",
+      "aka": [
+        "CNOOC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China BlueChemical Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China National Offshore Oil Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China North Industries Group Corporation Limited",
+      "aka": [
+        "Norinco Group"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China North Chemical Research Academy Group Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Chinese Academy of Ordnance Science",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Harbin First Machinery Group Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Inner Mongolia First Machinery Group Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Kiekert USA Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Merit Automotive Electronics Systems S.L.U",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "North Petroleum International Company Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Yunnan Yuanjin Optical Instrument Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China North Industries Group Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China South Industries Group Corporation",
+      "aka": [
+        "CSGC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Baoding Tianwei Baobian Electric Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Beijing Beiji Mechanical and Electrical Industry Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Changan US R&D Center, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China South Industries Group Corporation No. 59 Research Institute Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Heilongjiang Northern Tools Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Sichuan Jian'an Industry Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China South Industries Group Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China SpaceSat Co., Ltd.",
+      "aka": [
+        "China SpaceSat"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Aerospace Star Space Technology Application Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China SpaceSat Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Oriental Blue Sky Titanium Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China SpaceSat Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Xi'an Aerospace Tianhua Data Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China SpaceSat Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China State Construction Engineering Corporation Limited",
+      "aka": [
+        "CSCEC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Construction America, Inc.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China State Construction Engineering Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China State Shipbuilding Corporation Limited",
+      "aka": [
+        "CSSC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Shipbuilding Trading Co., Ltd.",
+      "aka": [
+        "CSTC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China State Shipbuilding Corporation Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Telecom Group Co., Ltd.",
+      "aka": [
+        "China Telecom"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Telecom Corporation Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Telecom Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Telecom Satellite Communications Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Telecom Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "New Guomai Digital Culture Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Telecom Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Tianyi Cloud Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Telecom Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Zhongjie Communications Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China Telecom Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Three Gorges Corporation",
+      "aka": [
+        "CTG"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China United Network Communications Group Co., Ltd.",
+      "aka": [
+        "China Unicom"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Beijing Telecom Planning and Designing Institute Company Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China United Network Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Unicom (BVI) Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China United Network Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Unicom (Hong Kong) Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China United Network Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China Unicom Group Corporation (BVI) Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China United Network Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "China United Network Communications Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "China United Network Communications Group Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "CloudWalk Technology Co., Ltd.",
+      "aka": [
+        "CloudWalk"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35191",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35191",
+      "source_page": 35191,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=3"
+    },
+    {
+      "name": "Commercial Aircraft Corporation of China Limited",
+      "aka": [
+        "COMAC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Beijing Aeronautical Science & Technology Research Institute",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Commercial Aircraft Corporation of China Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "COMAC America Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Commercial Aircraft Corporation of China Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Shanghai Aircraft Design and Research Institute",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Commercial Aircraft Corporation of China Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Shanghai Aircraft Manufacturing Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Commercial Aircraft Corporation of China Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Contemporary Amperex Technology Co., Ltd.",
+      "aka": [
+        "CATL"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "CRRC Corporation Limited",
+      "aka": [
+        "CRRC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "CSSC Offshore & Marine Engineering (Group) Company Limited",
+      "aka": [
+        "COMEC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Guangzhou Wenchuan Heavy Industry Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "CSSC Offshore & Marine Engineering (Group) Company Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Huacheng (Tianjin) Ship Leasing Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "CSSC Offshore & Marine Engineering (Group) Company Limited",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Dawning Information Industry Co., Ltd.",
+      "aka": [
+        "Sugon"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "EVE Energy Co., Ltd.",
+      "aka": [
+        "EVE Energy"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Global Tone Communication Technology Co., Ltd.",
+      "aka": [
+        "GTCOM"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "GTCOM Technology Corporation",
+      "aka": [
+        "GTCOM-US"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Global Tone Communication Technology Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Guizhou Aviation Technical Development Co., Ltd.",
+      "aka": [
+        "Guizhou Aviation Tech"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Hangzhou Hikvision Digital Technology Co., Ltd.",
+      "aka": [
+        "Hikvision"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Hangzhou Yushu Technology Co., Ltd.",
+      "aka": [
+        "Unitree"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Hesai Group",
+      "aka": [
+        "also known as Hesai Technology Co., Ltd."
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Huawei Investment & Holding Co., Ltd.",
+      "aka": [
+        "Huawei Holding"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Huawei Technologies Co., Ltd.",
+      "aka": [
+        "Huawei"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Huawei Investment & Holding Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "Inspur Group Co., Ltd.",
+      "aka": [
+        "Inspur"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "JA Solar Technology Co., Ltd.",
+      "aka": [
+        "JA Solar"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "MGI Tech Co., Ltd.",
+      "aka": [
+        "MGI"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35192",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35192",
+      "source_page": 35192,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=4"
+    },
+    {
+      "name": "NetPosa Technologies, Ltd.",
+      "aka": [
+        "NetPosa"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "NIO, Inc.",
+      "aka": [
+        "NIO"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Novogene Company Limited",
+      "aka": [
+        "Novogene"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Origincell Technology Co., Ltd.",
+      "aka": [
+        "Origincell"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Phenix Optical Company Limited",
+      "aka": [
+        "Phoenix Optics Company Limited"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Quectel Wireless Solutions Co., Ltd.",
+      "aka": [
+        "Quectel"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "RoboSense Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SDIC Intelligence (Xiamen) Information Co., Ltd.",
+      "aka": [
+        "SDIC Intelligence"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Beijing Meiya Hongshu Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "SDIC Intelligence (Xiamen) Information Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Xiamen Meiya Zhongmin Electronic Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "SDIC Intelligence (Xiamen) Information Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing International Corporation",
+      "aka": [
+        "SMIC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Better Way Enterprises Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "China IC Capital Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Magnificent Tower Limited",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing International (Beijing) Corporation",
+      "aka": [
+        "SMIC Beijing"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing International (Shenzhen) Corporation",
+      "aka": [
+        "SMIC Shenzhen"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing International (Tianjin) Corporation",
+      "aka": [
+        "SMIC Tianjin"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing North China (Beijing) Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Semiconductor Manufacturing South China Corporation",
+      "aka": [
+        "SMIC South China"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SilTech Semiconductor Corporation",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SMIC Holdings Limited",
+      "aka": [
+        "SMIC Holdings"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SMIC Semiconductor Manufacturing (Shanghai) Co., Ltd",
+      "aka": [
+        "SMIC Shanghai"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SMIC, Americas",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Semiconductor Manufacturing International Corporation",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "SenseTime Group, Inc.",
+      "aka": [
+        "SenseTime"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Shanghai Yitu Network Technology Co., Ltd.",
+      "aka": [
+        "Yitu"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Shenzhen DJI Technology Co., Ltd.",
+      "aka": [
+        "DJI"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Shenzhen Dajiang Baiwang Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Shenzhen DJI Technology Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Sinotrans & CSC Holdings Co., Ltd.",
+      "aka": [
+        "Sinotrans"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Tencent Holdings Limited",
+      "aka": [
+        "Tencent"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Tianma Microelectronics Co., Ltd.",
+      "aka": [
+        "Tianma"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "TP-Link Technologies Co., Ltd.",
+      "aka": [
+        "TP-Link"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Trina Solar Co., Ltd.",
+      "aka": [
+        "Trina Solar"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Wuhan Geosun Navigation Technology Co., Ltd.",
+      "aka": [
+        "Geosun"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35193",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35193",
+      "source_page": 35193,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=5"
+    },
+    {
+      "name": "Yangtze Memory Technologies Co., Ltd.",
+      "aka": [
+        "YMTC"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35194",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35194",
+      "source_page": 35194,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "Zhejiang Dahua Technology Co., Ltd.",
+      "aka": [
+        "Dahua"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35194",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35194",
+      "source_page": 35194,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "Chengdu Dahua Wisdom Information Technology Co., Ltd.",
+      "aka": [],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35194",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "Zhejiang Dahua Technology Co., Ltd.",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35194",
+      "source_page": 35194,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "Zhongji Innolight Co., Ltd.",
+      "aka": [
+        "Innolight"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "cite": "FY2021 NDAA § 1260H, Pub. L. 116-283; 91 FR 35194",
+      "listing_basis": "direct",
+      "date_added": "",
+      "parent": "",
+      "source_doc": "2026-11571",
+      "source_cite": "91 FR 35194",
+      "source_page": 35194,
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    }
+  ],
+  "adds": [],
+  "removes": [],
+  "register": [
+    {
+      "name": "Anhui Sun Create Electronics Co., Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "China International Information Services Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "China National Chemical Engineering Co., Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "China Traffic Construction USA, Inc.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "CNOOC China Limited",
+      "aka": [
+        "CNOOC China Ltd."
+      ],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "CNOOC International Trading Co., Ltd.",
+      "aka": [
+        "CNOOC International Trading"
+      ],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "COSCO SHIPPING Finance Co., Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "Costar Group Co., Ltd.",
+      "aka": [
+        "Costar"
+      ],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "GLARUN Technology Co., Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "Taiji Computer Co., Ltd.",
+      "aka": [],
+      "reason": "Removed when the annual list of 2026-06-10 was published.",
+      "removed_on": "2026-06-10",
+      "cite": "91 FR 35194",
+      "source_doc": "2026-11571",
+      "source_url": "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-06-10/pdf/2026-11571.pdf#page=6"
+    },
+    {
+      "name": "WuXi AppTec Co., Ltd.",
+      "reason": "The Deputy Secretary of War has determined that WuXi AppTec should be removed from the most recent Section 1260H List that was published in the Federal Register on June 10, 2026, in compliance with the order issued by the U.S. District Court of Columbia on August 7, 2026, granting WuXi AppTec's Motion for Preliminary Injunction, which enjoins the Department from enforcing, implementing, or otherwise giving effect to the Department's designation of WuXi AppTec as a Chinese military company under Section 1260H. The entity delisted from the list of ``Chinese military companies'' is also identified in Mandarin and can be found in this notice's docket on https://www.regulations.gov. Search by the docket ID, DOD-2026-OS- 2410. The Mandarin version of the delisting notice is available for public viewing at the Supporting & Related Material tab. Any correspondence related to the 1260H List must be emailed to [email protected].",
+      "removed_on": "2026-11-10",
+      "cite": "91 FR 72536",
+      "source_doc": "2026-22840",
+      "source_url": "https://www.federalregister.gov/documents/2026/11/10/2026-22840/notice-of-removal-of-designated-chinese-military-company",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-11-10/pdf/2026-22840.pdf#page=1",
+      "aka": [
+        "WuXi AppTec"
+      ],
+      "country": "China",
+      "last_listed_in": "2026-11571"
+    }
+  ],
+  "leftover": "",
+  "status": "open",
+  "created_at": "2026-11-21T01:48:07+00:00",
+  "decided_at": null
+}

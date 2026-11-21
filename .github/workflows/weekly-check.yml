@@ -1,0 +1,54 @@
+# Weekly: look for new Section 1260H notices in the Federal Register. If there is one, save it, read it
+# by rule, and open a pull request. Nothing is published until a person merges that pull request.
+# No AI step runs here (there is no one at the keyboard to say yes). No third-party actions, no secrets
+# beyond the job's own short-lived token. Runs only on a schedule or by hand, never on pull requests.
+name: weekly-check
+on:
+  schedule:
+    - cron: "17 12 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: weekly-check
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Get the code
+        run: git clone --depth 1 "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
+      - name: Offline proof (all tests)
+        run: cd repo && python3 -m unittest
+      - name: Is an update already waiting for you?
+        id: waiting
+        run: |
+          cd repo
+          n=$(gh pr list --state open --app github-actions --json headRefName -q '[.[] | select(.headRefName | startswith("update/"))] | length')
+          echo "n=$n" >> "$GITHUB_OUTPUT"
+          if [ "$n" != "0" ]; then echo "An update pull request is already open. Merge or close it first."; fi
+      - name: Look for new notices; propose
+        if: steps.waiting.outputs.n == '0'
+        run: |
+          cd repo
+          python3 run.py check
+          if [ -z "$(git status --porcelain)" ]; then echo "No new notice."; exit 0; fi
+          status=0; python3 run.py prepare > ../body.md || status=$?
+          if [ "$status" = "0" ] && python3 -m unittest; then
+            title="1260H: new Federal Register notice. Check it, then merge to publish"
+          elif [ "$status" = "0" ] || [ "$status" = "10" ]; then
+            title="HOLD, do not merge: 1260H notice needs a person"
+          else
+            exit "$status"
+          fi
+          branch="update/$(date -u +%Y-%m-%d-%H%M)"
+          git switch -c "$branch"
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Proposed 1260H update from the Federal Register"
+          git push -q origin "$branch"
+          gh pr create --base main --head "$branch" --body-file ../body.md --title "$title"

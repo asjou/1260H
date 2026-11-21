@@ -1,0 +1,6 @@
+# Your AI settings and keys stay on your computer. Never commit them.
+.env
+__pycache__/
+*.pyc
+# the classroom example's page (rebuilt on stage)
+example/index.html

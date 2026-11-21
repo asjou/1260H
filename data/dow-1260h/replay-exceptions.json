@@ -1,0 +1,18 @@
+{
+  "note": "Each place the replayed Federal Register notices and the list differ, and how it was decided. resolution: \"add\" (the notice lists it and the list should too), \"same entity\" (two spellings of one company; the list keeps its name; \"alias\": false keeps the notice's spelling off the page) or \"keep\" (the list keeps it although the notices do not). An undecided entry fails the replay.",
+  "differences": [
+    {
+      "parsed": "Addisino Co., Ltd",
+      "store": "Addsino Co., Ltd.",
+      "resolution": "same entity",
+      "alias": false,
+      "note": "91 FR 35190 (PDF page 2, listed under CASIC) prints 'Addisino'. The DoW list prints 'Addsino'. Same company; the Federal Register spelling is a typo, so the list keeps 'Addsino' and does not show 'Addisino'."
+    },
+    {
+      "parsed": "NIO, Inc.",
+      "store": null,
+      "resolution": "add",
+      "note": "Printed at 91 FR 35193 (PDF page 5) with its reason paragraph. A first parse of the DoW PDF missed it. Added."
+    }
+  ]
+}
