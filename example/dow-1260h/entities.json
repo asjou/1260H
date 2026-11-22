@@ -2,7 +2,7 @@
   "schema": "listwatch/entities@1",
   "slug": "dow-1260h",
   "currency_date": "",
-  "note": "EXAMPLE for teaching. This draft reproduces a first parse of the DoW PDF that missed a company. Run `python run.py replay --data example/dow-1260h` and fix it with the checks in replay-exceptions.json.",
+  "note": "EXAMPLE for teaching. This draft reproduces a first parse of the DoW PDF that missed a company. Run `python3 run.py replay --data example/dow-1260h`, then `python3 run.py decide --data example/dow-1260h` to fix it.",
   "entities": [
     {
       "name": "360 Security Technology Inc.",
