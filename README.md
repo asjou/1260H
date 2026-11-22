@@ -53,6 +53,7 @@ Python 3.10 or later (`python3`), standard library only. Nothing to install. No 
 python3 -m unittest      # the proof: all tests, offline
 python3 run.py replay    # re-read the saved notices and compare with the list
 python3 run.py decide    # answer a question for each difference the replay found
+python3 run.py review    # the same, as a clickable page in your browser (this computer only)
 python3 run.py spelling  # compare this year's names with earlier years' lists
 python3 run.py page      # rebuild docs/index.html
 python3 run.py check     # look for new notices (network)
@@ -100,6 +101,12 @@ It asks one question at a time, in plain words, and records your answer and your
     Is the notice's spelling 'Addisino Co., Ltd' a mistake (keep it off the page)? [Y/n] > y
     Why? One line: what the sources show. > The DoW PDF and the 2025 list print Addsino.
 ```
+
+**Prefer clicking?** `python3 run.py review --data example/dow-1260h` opens the same questions as a
+page in your browser: one card per difference, with the links, the saved PDFs, what earlier years
+printed, buttons for your answer and a box for your reason. It saves through the same rules as
+`decide`. The page runs on your own computer only (`http://127.0.0.1:8765`); press Ctrl+C in the
+terminal to stop it. In GitHub Codespaces, open the forwarded port it offers.
 
 When every difference is decided, the replay passes. Your answers are saved in
 `example/dow-1260h/replay-exceptions.json`: the record of what a person decided and why.
@@ -216,6 +223,7 @@ tab, or run `python3 run.py stale` yourself.
 | `data/dow-1260h/history/` | Earlier years' annual lists, kept to compare spellings. |
 | `data/dow-1260h/dow-pdf/` | Where you save the DoW PDFs by hand. |
 | `example/` | The classroom example and a made-up unfamiliar notice. |
+| `review.py` | The clickable review page: a small web server on your own computer, standard library only. |
 | `prompts/` | The two prompts, used only by the AI step: reading an unfamiliar notice, and the spelling second opinion. |
 | `tests/`, `test_replay.py` | The proof. The rules are tested against the real notices. |
 

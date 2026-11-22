@@ -170,6 +170,91 @@ class ClassroomExample(unittest.TestCase):
         self.assertEqual(out.count("UNRESOLVED"), 2)
 
 
+class ReviewPage(unittest.TestCase):
+    """The clickable page: same rules as `decide`, this computer only, a secret code per run."""
+
+    def setUp(self):
+        import threading
+        import review
+        ClassroomExample.setUp(self)
+        self.pdf = Path(self.tmp.name) / "2026-06-08.pdf"
+        self.pdf.write_bytes(b"%PDF-1.4 test")
+        self.ctx = using(self.data)
+        self.ctx.__enter__()
+        self.srv = review.make_server(state=run._state, decide=run._page_decide, advice=run._page_advice,
+                                      pdfs=lambda: {"2026-06-08.pdf": self.pdf}, port=0)
+        threading.Thread(target=self.srv.serve_forever, daemon=True).start()
+        self.base = f"http://127.0.0.1:{self.srv.server_port}"
+
+    def tearDown(self):
+        self.srv.shutdown()
+        self.srv.server_close()
+        self.ctx.__exit__(None, None, None)
+        self.tmp.cleanup()
+
+    def req(self, path, body=None, token=None, host=None):
+        import urllib.error
+        import urllib.request
+        h = {"Content-Type": "application/json"}
+        if token:
+            h["X-Review-Token"] = token
+        if host:
+            h["Host"] = host
+        r = urllib.request.Request(self.base + path, data=None if body is None else json.dumps(body).encode(), headers=h)
+        try:
+            with urllib.request.urlopen(r, timeout=10) as resp:
+                return resp.status, resp.read()
+        except urllib.error.HTTPError as e:
+            with e:
+                return e.code, e.read()
+
+    def test_the_page_carries_the_code_and_a_strict_policy(self):
+        code, body = self.req("/")
+        self.assertEqual(code, 200)
+        self.assertIn(self.srv.token.encode(), body)
+        self.assertNotIn(b"__TOKEN__", body)
+
+    def test_state_lists_the_two_differences_with_what_to_compare(self):
+        s = json.loads(self.req("/state")[1])
+        self.assertFalse(s["ok"])
+        pair = next(d for d in s["differences"] if d["kind"] == "pair")
+        self.assertEqual(pair["store"], "Addsino Co., Ltd.")
+        self.assertIn("2026-11571.pdf#page=2", pair["facts"]["fr"])
+        self.assertTrue(pair["facts"]["dow"].startswith("https://media.defense.gov/"))
+
+    def test_an_answer_without_the_code_or_from_another_host_is_refused(self):
+        body = {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "on the DoW PDF"}
+        self.assertEqual(self.req("/decide", body)[0], 403)
+        self.assertEqual(self.req("/decide", body, token="wrong")[0], 403)
+        self.assertEqual(self.req("/decide", body, token=self.srv.token, host="evil.example:80")[0], 403)
+        self.assertEqual(self.req("/", host="evil.example")[0], 403)
+        self.assertFalse(json.loads(self.req("/state")[1])["ok"])
+
+    def test_same_rules_as_decide_a_reason_and_a_fitting_choice(self):
+        t = self.srv.token
+        self.assertEqual(self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "  "}, t)[0], 400)
+        self.assertEqual(self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "keep", "why": "x"}, t)[0], 400)
+        self.assertEqual(self.req("/decide", {"parsed": "Invented Ltd.", "store": None, "choice": "add", "why": "x"}, t)[0], 400)
+
+    def test_two_answers_and_the_replay_passes(self):
+        t = self.srv.token
+        code, _ = self.req("/decide", {"parsed": "Addisino Co., Ltd", "store": "Addsino Co., Ltd.",
+                                       "choice": "same entity", "typo": True, "why": "DoW PDF prints Addsino"}, t)
+        self.assertEqual(code, 200)
+        code, body = self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "91 FR 35193"}, t)
+        self.assertTrue(json.loads(body)["ok"])
+        exc = {d["parsed"]: d for d in json.loads((self.data / "replay-exceptions.json").read_text())["differences"]}
+        self.assertEqual((exc["Addisino Co., Ltd"]["resolution"], exc["Addisino Co., Ltd"]["alias"]), ("same entity", False))
+        with using(self.data):
+            self.assertEqual(quiet(run.cmd_replay)[0], 0)
+
+    def test_only_a_listed_pdf_is_served(self):
+        code, body = self.req("/pdf/2026-06-08.pdf")
+        self.assertEqual((code, body[:5]), (200, b"%PDF-"))
+        self.assertEqual(self.req("/pdf/..%2F..%2Freplay-exceptions.json")[0], 404)
+        self.assertEqual(self.req("/pdf/../run.py")[0], 404)
+
+
 class EarlierLists(unittest.TestCase):
     HIST = LIVE / "history"
 

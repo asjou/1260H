@@ -3,6 +3,7 @@ only; nothing to install.
 
     python3 run.py replay       re-read the saved notices offline and compare with the list (no network)
     python3 run.py decide       walk through each difference replay found and record your decision
+    python3 run.py review       the same, as a clickable page in your browser (this computer only)
     python3 run.py spelling     compare the newest list's names with earlier years' lists (no network)
     python3 run.py history add DOC   save an earlier annual list from the Federal Register, for spelling
     python3 run.py page         rebuild the web page from the list (no network)
@@ -218,33 +219,53 @@ def _earlier():
     return []
 
 
-def _official():
-    meta = _read("page-meta.json", {})
-    pdfs = sorted(p for d in (DATA / "dow-pdf", LIVE / "dow-pdf") if d.exists() for p in d.glob("*.pdf"))
-    return meta.get("official_url", ""), [_rel(p) for p in pdfs]
+def _pdfs():
+    """DoW PDFs saved by hand, {file name: path}: this folder's dow-pdf/, then the live list's."""
+    out = {}
+    for d in (DATA / "dow-pdf", LIVE / "dow-pdf"):
+        if d.exists():
+            for p in sorted(d.glob("*.pdf")):
+                out.setdefault(p.name, p)
+    return out
+
+
+def _kind(d):
+    return "pair" if d.get("parsed") and d.get("store") else "missing" if d.get("parsed") else "extra"
+
+
+def _facts(d, earlier):
+    """What to open and what earlier lists say, for one difference. Plain facts, no AI."""
+    names = []
+    for side in ("store", "parsed"):
+        n = d.get(side)
+        if not n or not earlier:
+            continue
+        seen = history.printed_before(n, earlier)
+        close = [] if seen else history.earlier_spellings(n, earlier)
+        names.append({"name": n, "side": side,
+                      "printed_in": [{"year": h["date"][:4], "cite": h["cite"], "url": h["url"]} for h in seen],
+                      "close": [{"year": e["date"][:4], "spelling": e["spelling"], "cite": e["cite"]} for e in close],
+                      "new": not seen and not close and _kind(d) == "missing"})
+    return {"fr": d.get("url", ""), "dow": _read("page-meta.json", {}).get("official_url", ""),
+            "pdfs": list(_pdfs()), "names": names}
 
 
 def _evidence(d, earlier):
-    """What to open and what earlier lists say, for one difference. Plain lines, no AI."""
-    url, pdfs = _official()
+    """The facts as lines for the terminal."""
+    f = _facts(d, earlier)
     out = []
-    if d.get("url"):
-        out.append(f"      Federal Register: {d['url']}")
-    if url:
-        out.append(f"      DoW list (open in a browser, search for the name): {url}")
-    out += [f"      your saved DoW PDF: {p}" for p in pdfs]
-    for side in ("store", "parsed"):
-        name = d.get(side)
-        if not name or not earlier:
-            continue
-        seen = history.printed_before(name, earlier)
-        if seen:
-            out.append(f"      earlier lists print {name!r}: " + ", ".join(f"{h['date'][:4]} ({h['cite']})" for h in seen))
+    if f["fr"]:
+        out.append(f"      Federal Register: {f['fr']}")
+    if f["dow"]:
+        out.append(f"      DoW list (open in a browser, search for the name): {f['dow']}")
+    out += [f"      your saved DoW PDF: {_rel(p)}" for p in _pdfs().values()]
+    for n in f["names"]:
+        if n["printed_in"]:
+            out.append(f"      earlier lists print {n['name']!r}: " + ", ".join(f"{h['year']} ({h['cite']})" for h in n["printed_in"]))
         else:
-            near = history.earlier_spellings(name, earlier)
-            out.append(f"      no earlier list prints {name!r}" + (
-                "; close: " + ", ".join(f"{e['date'][:4]} printed {e['spelling']!r}" for e in near) if near else
-                ("" if side == "store" or d.get("store") else ": new in this notice")))
+            out.append(f"      no earlier list prints {n['name']!r}" + (
+                "; close: " + ", ".join(f"{e['year']} printed {e['spelling']!r}" for e in n["close"]) if n["close"] else
+                ": new in this notice" if n["new"] else ""))
     return out
 
 
@@ -315,6 +336,32 @@ def _save_decision(d, **fields):
     f.write_text(json.dumps(exc, ensure_ascii=False, indent=2) + "\n")
 
 
+CHOICES = {"pair": "same entity", "missing": "add", "extra": "keep"}
+
+
+def record(d, choice, why, typo=True):
+    """Record one decision: the only way `decide` and `review` save an answer. Raises ValueError
+    for a choice that does not fit the difference, or a missing reason."""
+    want = CHOICES[_kind(d)]
+    if choice != want:
+        raise ValueError(f"for this difference the answer is {want!r} or skip")
+    why = " ".join((why or "").split())
+    if not why:
+        raise ValueError("a reason is needed: the next person reads it")
+    fields = {"resolution": choice, "note": why}
+    if choice == "same entity":
+        fields["alias"] = not typo          # a typo stays off the page
+    _save_decision(d, **fields)
+
+
+def _differences():
+    rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
+    earlier = _earlier()
+    pairs = [{**d, "earlier": history.earlier_spellings(d["parsed"], earlier)}
+             for d in rep.differences if _kind(d) == "pair"]
+    return rep, earlier, pairs
+
+
 def _why(ask):
     while True:
         w = ask("    Why? One line: what the sources show. > ").strip()
@@ -326,18 +373,16 @@ def _why(ask):
 def cmd_decide(ask=input, interactive=None):
     """Walk through each difference the replay found. Show what to compare, ask, and record the
     answer in replay-exceptions.json. Nothing is published: approving the proposal comes after."""
-    rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
+    rep, earlier, pairs = _differences()
     if not rep.differences:
         print("nothing to decide: the replay passes" if rep.ok else "\n".join(rep.lines()))
         return 0 if rep.ok else 1
-    earlier = _earlier()
-    pairs = [{**d, "earlier": history.earlier_spellings(d["parsed"], earlier)}
-             for d in rep.differences if d.get("parsed") and d.get("store")]
     advice = _second_opinion(pairs, ask, interactive)
     print(f"{len(rep.differences)} difference(s) to decide. Open the links, compare, then answer.")
     for i, d in enumerate(rep.differences, 1):
         print()
-        if d.get("parsed") and d.get("store"):
+        kind = _kind(d)
+        if kind == "pair":
             print(f"{i}. Two spellings. The Federal Register notice prints {d['parsed']!r}; the list has {d['store']!r}.")
             print("\n".join(_evidence(d, earlier)))
             n = next(j for j, p in enumerate(pairs, 1) if p["parsed"] == d["parsed"])
@@ -346,20 +391,19 @@ def cmd_decide(ask=input, interactive=None):
             a = ask("    Same company, spelled two ways? [y]es / [n]o / [s]kip > ").strip().lower()
             if a.startswith("y"):
                 typo = ask(f"    Is the notice's spelling {d['parsed']!r} a mistake (keep it off the page)? [Y/n] > ").strip().lower()
-                _save_decision(d, resolution="same entity", alias=not typo.startswith("y") and typo != "",
-                               note=_why(ask))
+                record(d, "same entity", _why(ask), typo=typo.startswith("y") or typo == "")
                 print(f"    Saved: same company; the list keeps {d['store']!r}.")
             elif a.startswith("n"):
                 print("    Then they are two different companies: one is missing from the list, and the other is in no"
                       " notice. That needs a closer look at both; left undecided.")
             else:
                 print("    Skipped; still undecided.")
-        elif d.get("parsed"):
+        elif kind == "missing":
             print(f"{i}. In the notice, not on the list: {d['parsed']!r}.")
             print("\n".join(_evidence(d, earlier)))
             a = ask("    Does the DoW list include it, so the list should too? [a]dd / [s]kip > ").strip().lower()
             if a.startswith("a"):
-                _save_decision(d, resolution="add", note=_why(ask))
+                record(d, "add", _why(ask))
                 print("    Saved: add it.")
             else:
                 print("    Skipped; still undecided.")
@@ -368,12 +412,48 @@ def cmd_decide(ask=input, interactive=None):
             print("\n".join(_evidence(d, earlier)))
             a = ask("    Keep it on the list anyway? [k]eep / [s]kip > ").strip().lower()
             if a.startswith("k"):
-                _save_decision(d, resolution="keep", note=_why(ask))
+                record(d, "keep", _why(ask))
                 print("    Saved: keep it.")
             else:
                 print("    Skipped; still undecided.")
     print()
     return cmd_replay()
+
+
+def _state():
+    """Everything the review page shows, as plain data."""
+    rep, earlier, _pairs = _differences()
+    llm = _llm(interactive=True)
+    return {"ok": rep.ok, "lines": rep.lines(), "label": _read("page-meta.json", {}).get("label", ""),
+            "ai": f"{llm[1]} at {llm[0]}" if llm else "",
+            "differences": [{"parsed": d.get("parsed"), "store": d.get("store"), "kind": _kind(d),
+                             "facts": _facts(d, earlier)} for d in rep.differences],
+            "resolved": [{"parsed": e.get("parsed"), "store": e.get("store"), "resolution": e.get("resolution"),
+                          "note": e.get("note", "")} for e in rep.resolved]}
+
+
+def _page_decide(parsed, store, choice, why, typo=True):
+    """A decision from the review page. It must match a difference the replay reports right now."""
+    rep, _e, _p = _differences()
+    d = next((d for d in rep.differences if (d.get("parsed") or None) == (parsed or None)
+              and (d.get("store") or None) == (store or None)), None)
+    if d is None:
+        raise ValueError("that difference is no longer open: reload the page")
+    record(d, choice, why, typo=typo)
+
+
+def _page_advice():
+    """The one AI call, from the page's button (the click is the yes)."""
+    _rep, _e, pairs = _differences()
+    got = _second_opinion(pairs, ask=lambda q: "y", interactive=True)
+    return [{"parsed": pairs[n - 1]["parsed"], "guess": g, "why": w} for n, (g, w) in sorted(got.items())]
+
+
+def cmd_review(port=8765, open_browser=True):
+    """A clickable page for the same decisions, on this computer only. Ctrl+C stops it."""
+    import review
+    return review.serve(state=_state, decide=_page_decide, advice=_page_advice, pdfs=_pdfs,
+                        port=port, open_browser=open_browser)
 
 
 def _build_page():
@@ -535,7 +615,8 @@ def main(argv):
         DATA = (HERE / argv[i + 1]).resolve()
         argv = argv[:i] + argv[i + 2:]
     cmds = {"replay": cmd_replay, "page": cmd_page, "check": cmd_check, "show": cmd_show,
-            "stale": cmd_stale, "prepare": cmd_prepare, "decide": cmd_decide, "spelling": cmd_spelling}
+            "stale": cmd_stale, "prepare": cmd_prepare, "decide": cmd_decide, "spelling": cmd_spelling,
+            "review": cmd_review}
     if len(argv) == 3 and argv[:2] == ["history", "add"]:
         return cmd_history_add(argv[2])
     if len(argv) == 2 and argv[0] == "approve":
