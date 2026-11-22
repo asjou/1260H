@@ -1,5 +1,5 @@
 {
-  "note": "EXAMPLE. Each place the notices and the draft list differ. Open the source link, check the PDF page, then set resolution to \"add\" (the notice lists it and the list should too), \"same entity\" (two spellings of one company; add \"alias\": false to keep the notice's spelling off the page) or \"keep\". Write why in \"note\". An undecided entry fails the replay.",
+  "note": "EXAMPLE. Each place the notices and the draft list differ. Run `python3 run.py decide --data example/dow-1260h`: it shows what to compare and records your answer here. (You can also edit this file: resolution \"add\", \"same entity\" with \"alias\": false to keep the notice's spelling off the page, or \"keep\", and why in \"note\".) An undecided entry fails the replay.",
   "differences": [
     {
       "parsed": "Addisino Co., Ltd",

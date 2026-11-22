@@ -15,7 +15,7 @@ PKG = Path(__file__).resolve().parents[1] / "listwatch"
 FIX = Path(__file__).parent / "fixtures" / "listwatch"
 SEARCH = json.loads((FIX / "fr-search-1260h.json").read_text())
 DOCS = {d["document_number"]: d for d in SEARCH["results"]}
-STDLIB = {"__future__", "ast", "dataclasses", "datetime", "hashlib", "html", "json", "pathlib", "re",
+STDLIB = {"__future__", "difflib", "ast", "dataclasses", "datetime", "hashlib", "html", "json", "pathlib", "re",
           "urllib", "typing", "collections"}
 
 

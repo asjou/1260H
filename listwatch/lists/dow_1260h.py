@@ -320,3 +320,61 @@ def parse(kind: str, text: str, doc: dict, current: list[dict]) -> Parsed:
 
 
 __all__ = ["SLUG", "QUERY", "DEFAULTS", "classify", "unrelated", "parse", "provenance", "split_top"]
+
+
+# ---- earlier annual lists, read only to compare spellings across years ----
+# The 2021, 2024 and 2025 notices print one company per line: a long name wraps onto the next line,
+# a footnote sits between two dashed rules, and the list ends at the first indented paragraph or
+# section heading. These rows never build the list; they are evidence for a person deciding.
+
+_OLD_LEAD = re.compile(r"has\s+determined\s+that\s+the\s+following\s+entities\s+qualify[\s\S]{0,400}?:\s*\n", re.I)
+_FOOTNOTE = re.compile(r"\n-{20,}\n[\s\S]*?\n-{20,}\n")
+_PAGE_LINE = re.compile(r"\[\[Page \d+\]\]")
+_OLD_END = re.compile(r"^(\s+\S|\*|The (Deputy )?Secretary\b|Reconsideration\b|Dated:)")
+_BAD_CLOSE = re.compile(r"\(([^()\]]*)\]")          # "(SMIC Tianjin]": a misprinted bracket, 90 FR 1106
+
+
+def _wraps(s: str) -> bool:
+    """True when a line is cut mid-name: an open parenthesis, a trailing comma or a hyphen."""
+    return s.count("(") > s.count(")") or s.endswith((",", "-"))
+
+
+def earlier_names(text: str, doc: dict) -> list[dict]:
+    """Every company an annual list prints, as {"name", "aka"}. The 2026 layout goes through the full
+    parser; the older one-per-line layout through a line reader. Any other layout raises LayoutError."""
+    try:
+        return [{"name": r["name"], "aka": r.get("aka", [])} for r in _parse_annual(text, doc).roster or []]
+    except LayoutError:
+        pass
+    m = _OLD_LEAD.search(text)
+    if not m:
+        raise LayoutError(f"{doc.get('document_number', 'notice')}: no list of entities found")
+    lines, cur = [], ""
+    for line in _BAD_CLOSE.sub(r"(\1)", _FOOTNOTE.sub("\n", "\n" + text[m.end():])).split("\n"):
+        if _PAGE_LINE.fullmatch(line.strip()):
+            continue
+        if not line.strip():
+            if cur and not _wraps(cur):
+                lines.append(cur)
+                cur = ""
+            continue
+        if cur and _wraps(cur):
+            cur = cur + line.strip() if cur.endswith("-") else f"{cur} {line.strip()}"
+            continue
+        if _OLD_END.match(line):
+            break
+        if cur:
+            lines.append(cur)
+        cur = line.strip()
+    if cur:
+        lines.append(cur)
+    out = []
+    for s in lines:
+        s = re.sub(r"\)\s*\d+$", ")", s)                    # a footnote number after the name: "(BGI)9"
+        name, aka = parse_entry(s)
+        if len(name) > 120 or not re.search(r"[A-Za-z]", name):
+            raise LayoutError(f"{doc.get('document_number', 'notice')}: not a company name: {name[:80]!r}")
+        out.append({"name": name, "aka": aka})
+    if len(out) < 5:
+        raise LayoutError(f"{doc.get('document_number', 'notice')}: list too short ({len(out)} names)")
+    return out
