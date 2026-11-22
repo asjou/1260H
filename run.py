@@ -2,6 +2,9 @@
 only; nothing to install.
 
     python3 run.py replay       re-read the saved notices offline and compare with the list (no network)
+    python3 run.py decide       walk through each difference replay found and record your decision
+    python3 run.py spelling     compare the newest list's names with earlier years' lists (no network)
+    python3 run.py history add DOC   save an earlier annual list from the Federal Register, for spelling
     python3 run.py page         rebuild the web page from the list (no network)
     python3 run.py check        ask the Federal Register for new 1260H notices; save them; write proposals
     python3 run.py show         list open proposals and what each would change
@@ -24,7 +27,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from listwatch import LayoutError, ListwatchError, detect, page, proposal as P, replay, sources
+from listwatch import LayoutError, ListwatchError, detect, history, page, proposal as P, replay, sources
+from listwatch.names import key as _key
 from listwatch.fetch import _OPENER as _NO_REDIRECT, fetch
 from listwatch.lists import dow_1260h as RULES
 
@@ -32,6 +36,7 @@ HERE = Path(__file__).resolve().parent
 LIVE = HERE / "data" / "dow-1260h"
 DATA = LIVE
 PROMPT = HERE / "prompts" / "listwatch.md"
+SECOND = HERE / "prompts" / "second-opinion.md"
 
 
 # ---- files ----
@@ -89,6 +94,11 @@ def _rel(p):
         return str(p)
 
 
+def _flag():
+    """' --data <folder>' when working on anything but the live list, for commands we print."""
+    return "" if DATA == LIVE else f" --data {_rel(DATA)}"
+
+
 def _page_path():
     return HERE / "docs" / "index.html" if DATA == LIVE else DATA.parent / "index.html"
 
@@ -113,10 +123,8 @@ def _safe_endpoint(url: str) -> bool:
     return u.scheme == "https" or (u.scheme == "http" and u.hostname in ("127.0.0.1", "localhost", "::1"))
 
 
-def _reader(ask=input, interactive=None):
-    """The one place an AI model can be called. None (no AI) unless LISTWATCH_LLM_URL and
-    LISTWATCH_LLM_MODEL are set and a person is at the keyboard to say yes. Any OpenAI-compatible
-    endpoint works: a local model, OpenRouter, or a paid provider. Swap it by changing the URL."""
+def _llm(interactive=None):
+    """(url, model, key) when the AI step is configured, safe, and a person is at the keyboard; else None."""
     env = _settings()
     url, model, key = env.get("LISTWATCH_LLM_URL", ""), env.get("LISTWATCH_LLM_MODEL", ""), env.get("LISTWATCH_LLM_KEY", "")
     if interactive is None:
@@ -126,6 +134,34 @@ def _reader(ask=input, interactive=None):
     if not _safe_endpoint(url):
         print(f"AI step off: {url} is not https (plain http is allowed only to this computer)")
         return None
+    return url, model, key
+
+
+def _chat(llm, prompt):
+    """The one place a request goes to an AI model. Callers ask the person first."""
+    url, model, key = llm
+    body = json.dumps({"model": model, "temperature": 0,
+                       "messages": [{"role": "user", "content": prompt}]}).encode()
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+    req = urllib.request.Request(url.rstrip("/") + "/chat/completions", data=body, headers=headers)
+    with _NO_REDIRECT.open(req, timeout=300) as r:      # never follow a redirect with the key
+        content = json.loads(r.read())["choices"][0]["message"]["content"]
+    m = re.search(r"[\[{].*[\]}]", content, re.S)
+    if not m:
+        raise ValueError("the model did not answer in JSON")
+    return json.loads(m.group(0))
+
+
+def _reader(ask=input, interactive=None):
+    """Reads a notice the rules cannot. None (no AI) unless LISTWATCH_LLM_URL and LISTWATCH_LLM_MODEL
+    are set and a person is at the keyboard to say yes. Any OpenAI-compatible endpoint works: a
+    local model, OpenRouter, or a paid provider. Swap it by changing the URL."""
+    llm = _llm(interactive)
+    if llm is None:
+        return None
+    url, model, _key_ = llm
 
     def read(text, doc):
         name = doc.get("document_number") or "this notice"
@@ -133,27 +169,211 @@ def _reader(ask=input, interactive=None):
             raise RuntimeError("you said no; the notice is left for a person to read")
         prompt = (PROMPT.read_text().replace("{title}", doc.get("title", "")).replace("{text}", text[:60000])
                   + '\n\nAnswer with one JSON object only: {"kind": "addition" | "removal" | "none", "names": [...]}')
-        body = json.dumps({"model": model, "temperature": 0,
-                           "messages": [{"role": "user", "content": prompt}]}).encode()
-        headers = {"Content-Type": "application/json"}
-        if key:
-            headers["Authorization"] = f"Bearer {key}"
-        req = urllib.request.Request(url.rstrip("/") + "/chat/completions", data=body, headers=headers)
-        with _NO_REDIRECT.open(req, timeout=300) as r:      # never follow a redirect with the key
-            content = json.loads(r.read())["choices"][0]["message"]["content"]
-        m = re.search(r"\{.*\}", content, re.S)
-        if not m:
-            raise ValueError("the model did not answer in JSON")
-        return json.loads(m.group(0))
+        ans = _chat(llm, prompt)
+        if not isinstance(ans, dict):
+            raise ValueError("the model did not answer with one JSON object")
+        return ans
     return read
+
+
+GUESSES = ("typo", "rename", "different companies", "unsure")
+
+
+def _second_opinion(pairs, ask=input, interactive=None):
+    """One optional AI call for all the spelling pairs at once. Returns {pair number: (guess, why)},
+    or {} when the AI step is off or the person says no. It only advises: the person decides."""
+    llm = _llm(interactive)
+    if llm is None or not pairs:
+        return {}
+    url, model, _k = llm
+    q = (f"Ask {model} at {url} for a second opinion on {len(pairs)} spelling pair(s)? It sends only the "
+         "company names and what earlier lists printed. [y/N] ")
+    if ask(q).strip().lower() != "y":
+        return {}
+    lines = []
+    for i, p in enumerate(pairs, 1):
+        before = "; ".join(f"{e['date']} list printed {e['spelling']!r}" for e in p["earlier"]) or "no earlier list prints a close name"
+        lines.append(f"{i}. notice prints {p['parsed']!r}; the list has {p['store']!r}; {before}")
+    prompt = (SECOND.read_text().replace("{pairs}", "\n".join(lines))
+              + '\n\nAnswer with one JSON array only: [{"n": 1, "guess": "' + '" | "'.join(GUESSES) + '", "why": "..."}]')
+    try:
+        ans = _chat(llm, prompt)
+    except Exception as e:                  # any failure: no advice, the person decides alone
+        print(f"no second opinion ({e})")
+        return {}
+    out = {}
+    for a in ans if isinstance(ans, list) else []:
+        if isinstance(a, dict) and a.get("guess") in GUESSES and a.get("n") in range(1, len(pairs) + 1):
+            out[a["n"]] = (a["guess"], str(a.get("why", ""))[:240])
+    return out
 
 
 # ---- commands ----
 
+def _earlier():
+    """Earlier annual lists for the spelling comparison: this folder's history/, or the live list's."""
+    for folder in (DATA / "history", LIVE / "history"):
+        if folder.exists():
+            return history.load(RULES, folder)
+    return []
+
+
+def _official():
+    meta = _read("page-meta.json", {})
+    pdfs = sorted(p for d in (DATA / "dow-pdf", LIVE / "dow-pdf") if d.exists() for p in d.glob("*.pdf"))
+    return meta.get("official_url", ""), [_rel(p) for p in pdfs]
+
+
+def _evidence(d, earlier):
+    """What to open and what earlier lists say, for one difference. Plain lines, no AI."""
+    url, pdfs = _official()
+    out = []
+    if d.get("url"):
+        out.append(f"      Federal Register: {d['url']}")
+    if url:
+        out.append(f"      DoW list (open in a browser, search for the name): {url}")
+    out += [f"      your saved DoW PDF: {p}" for p in pdfs]
+    for side in ("store", "parsed"):
+        name = d.get(side)
+        if not name or not earlier:
+            continue
+        seen = history.printed_before(name, earlier)
+        if seen:
+            out.append(f"      earlier lists print {name!r}: " + ", ".join(f"{h['date'][:4]} ({h['cite']})" for h in seen))
+        else:
+            near = history.earlier_spellings(name, earlier)
+            out.append(f"      no earlier list prints {name!r}" + (
+                "; close: " + ", ".join(f"{e['date'][:4]} printed {e['spelling']!r}" for e in near) if near else
+                ("" if side == "store" or d.get("store") else ": new in this notice")))
+    return out
+
+
 def cmd_replay():
     rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
     print("\n".join(rep.lines()))
+    if rep.differences:
+        earlier = _earlier()
+        print("\nWhat to compare for each difference:")
+        for i, d in enumerate(rep.differences, 1):
+            print(f"  {i}. {d.get('parsed') or d.get('store')}")
+            print("\n".join(_evidence(d, earlier)))
+        print(f"\nThen record your decisions: python3 run.py decide{_flag()}")
     return 0 if rep.ok else 1
+
+
+def cmd_spelling():
+    """Names in the newest annual list that no earlier list prints, but that are close to a name an
+    earlier list does print. Each may be a typo, a rename, or a different company."""
+    earlier = _earlier()
+    if not earlier:
+        print("no earlier lists saved: add one with `python3 run.py history add DOC`")
+        return 2
+    newest = replay._annual_rows(RULES, DATA, _all_docs())
+    hits = history.near_misses([r["name"] for r in newest], earlier)
+    print(f"compared {len(newest)} names with {len(earlier)} earlier list(s): "
+          + ", ".join(f"{h['date']} ({h['cite']}, {len(h['names'])} names)" for h in earlier))
+    for h in hits:
+        print(f"  {h['name']!r}")
+        for e in h["earlier"]:
+            print(f"      {e['date'][:4]} printed {e['spelling']!r}  ({e['cite']}, {e['url']})")
+    print(f"{len(hits)} name(s) to look at. Each could be a typo, a rename or a different company: check the DoW PDF."
+          if hits else "no new spellings close to earlier ones")
+    return 0
+
+
+def cmd_history_add(doc):
+    """Save one earlier annual list from the Federal Register into history/ (network)."""
+    meta = json.loads(fetch(f"https://www.federalregister.gov/api/v1/documents/{doc}.json"))
+    d = {"document_number": doc, **detect._meta(meta)}
+    if detect.classify(d, RULES) not in ("annual", "addition"):      # the 2021 list is titled as a designation
+        print(f"{doc} is not a 1260H list ({meta.get('title', '')!r})")
+        return 2
+    body = fetch(sources.check_url(d["raw_text_url"]))
+    try:                                   # read it before saving: only a whole list belongs in history/
+        n = len(RULES.earlier_names(sources.clean(body), d))
+    except LayoutError as e:
+        print(f"{doc} does not read as a whole list ({e}); not saved")
+        return 2
+    folder = DATA / "history"
+    rec = sources.save(folder, doc, d["raw_text_url"], body, detect._now())
+    rec.update({k: d[k] for k in ("title", "publication_date", "citation", "start_page", "html_url")})
+    (folder / f"{doc}.json").write_text(json.dumps(rec, indent=2) + "\n")
+    print(f"saved {_rel(folder / (doc + '.txt'))}: {d['publication_date']} ({d['citation']}), {n} names")
+    return 0
+
+
+def _save_decision(d, **fields):
+    f = DATA / "replay-exceptions.json"
+    exc = _read("replay-exceptions.json", {"differences": []})
+    same = lambda e: _key(e.get("parsed") or "") == _key(d.get("parsed") or "") and \
+        _key(e.get("store") or "") == _key(d.get("store") or "")
+    hit = next((e for e in exc["differences"] if same(e)), None)
+    if hit is None:
+        hit = {"parsed": d.get("parsed"), "store": d.get("store")}
+        exc["differences"].append(hit)
+    hit.update(fields)
+    f.write_text(json.dumps(exc, ensure_ascii=False, indent=2) + "\n")
+
+
+def _why(ask):
+    while True:
+        w = ask("    Why? One line: what the sources show. > ").strip()
+        if w:
+            return w
+        print("    A reason is needed: the next person reads it.")
+
+
+def cmd_decide(ask=input, interactive=None):
+    """Walk through each difference the replay found. Show what to compare, ask, and record the
+    answer in replay-exceptions.json. Nothing is published: approving the proposal comes after."""
+    rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
+    if not rep.differences:
+        print("nothing to decide: the replay passes" if rep.ok else "\n".join(rep.lines()))
+        return 0 if rep.ok else 1
+    earlier = _earlier()
+    pairs = [{**d, "earlier": history.earlier_spellings(d["parsed"], earlier)}
+             for d in rep.differences if d.get("parsed") and d.get("store")]
+    advice = _second_opinion(pairs, ask, interactive)
+    print(f"{len(rep.differences)} difference(s) to decide. Open the links, compare, then answer.")
+    for i, d in enumerate(rep.differences, 1):
+        print()
+        if d.get("parsed") and d.get("store"):
+            print(f"{i}. Two spellings. The Federal Register notice prints {d['parsed']!r}; the list has {d['store']!r}.")
+            print("\n".join(_evidence(d, earlier)))
+            n = next(j for j, p in enumerate(pairs, 1) if p["parsed"] == d["parsed"])
+            if n in advice:
+                print(f"      AI's guess (a guess, not a source; check it): {advice[n][0]}. {advice[n][1]}")
+            a = ask("    Same company, spelled two ways? [y]es / [n]o / [s]kip > ").strip().lower()
+            if a.startswith("y"):
+                typo = ask(f"    Is the notice's spelling {d['parsed']!r} a mistake (keep it off the page)? [Y/n] > ").strip().lower()
+                _save_decision(d, resolution="same entity", alias=not typo.startswith("y") and typo != "",
+                               note=_why(ask))
+                print(f"    Saved: same company; the list keeps {d['store']!r}.")
+            elif a.startswith("n"):
+                print("    Then they are two different companies: one is missing from the list, and the other is in no"
+                      " notice. That needs a closer look at both; left undecided.")
+            else:
+                print("    Skipped; still undecided.")
+        elif d.get("parsed"):
+            print(f"{i}. In the notice, not on the list: {d['parsed']!r}.")
+            print("\n".join(_evidence(d, earlier)))
+            a = ask("    Does the DoW list include it, so the list should too? [a]dd / [s]kip > ").strip().lower()
+            if a.startswith("a"):
+                _save_decision(d, resolution="add", note=_why(ask))
+                print("    Saved: add it.")
+            else:
+                print("    Skipped; still undecided.")
+        else:
+            print(f"{i}. On the list, but in no notice: {d['store']!r}.")
+            print("\n".join(_evidence(d, earlier)))
+            a = ask("    Keep it on the list anyway? [k]eep / [s]kip > ").strip().lower()
+            if a.startswith("k"):
+                _save_decision(d, resolution="keep", note=_why(ask))
+                print("    Saved: keep it.")
+            else:
+                print("    Skipped; still undecided.")
+    print()
+    return cmd_replay()
 
 
 def _build_page():
@@ -184,7 +404,7 @@ def _holds(prop, props):
     if prop["kind"] == "start":
         rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
         if not rep.ok:
-            holds.append("the replay check fails: run `python3 run.py replay` and resolve each difference")
+            holds.append(f"the replay check fails: run `python3 run.py replay{_flag()}`, then `python3 run.py decide{_flag()}`")
     return c, holds
 
 
@@ -230,7 +450,7 @@ def cmd_approve(pid):
         print("cannot approve: " + " | ".join(holds))
         return 2
     _approve(prop)
-    print(f"approved {pid}; run `python3 run.py page{'' if DATA == LIVE else ' --data ' + _rel(DATA)}` to rebuild the page")
+    print(f"approved {pid}; run `python3 run.py page{_flag()}` to rebuild the page")
     return 0
 
 
@@ -315,7 +535,9 @@ def main(argv):
         DATA = (HERE / argv[i + 1]).resolve()
         argv = argv[:i] + argv[i + 2:]
     cmds = {"replay": cmd_replay, "page": cmd_page, "check": cmd_check, "show": cmd_show,
-            "stale": cmd_stale, "prepare": cmd_prepare}
+            "stale": cmd_stale, "prepare": cmd_prepare, "decide": cmd_decide, "spelling": cmd_spelling}
+    if len(argv) == 3 and argv[:2] == ["history", "add"]:
+        return cmd_history_add(argv[2])
     if len(argv) == 2 and argv[0] == "approve":
         return cmd_approve(argv[1])
     if len(argv) == 2 and argv[0] == "read":

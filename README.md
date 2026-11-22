@@ -52,6 +52,8 @@ Python 3.10 or later (`python3`), standard library only. Nothing to install. No 
 ```
 python3 -m unittest      # the proof: all tests, offline
 python3 run.py replay    # re-read the saved notices and compare with the list
+python3 run.py decide    # answer a question for each difference the replay found
+python3 run.py spelling  # compare this year's names with earlier years' lists
 python3 run.py page      # rebuild docs/index.html
 python3 run.py check     # look for new notices (network)
 python3 run.py show      # what each open proposal would change
@@ -70,21 +72,83 @@ teaching, and it repeats two real problems:
   [here](https://media.defense.gov/2026/Jun/08/2003945537/-1/-1/1/ENTITIES-IDENTIFIED-AS-CHINESE-MILITARY-COMPANIES-OPERATING-IN-THE-UNITED-STATES-IN-ACCORDANCE-WITH-SECTION-1260H.PDF) (open it in a browser; the site blocks scripts). Then search the web for
   "Addisino": the misprint has been copied into other published lists.
 
+**Step 1. Let the tool find them.** You don't hunt for typos; the replay does:
+
 ```
-python3 run.py replay --data example/dow-1260h      # FAIL: two differences, each with a PDF page link
-#   open each link, check the PDF page, then edit example/dow-1260h/replay-exceptions.json:
-#   NIO      -> "resolution": "add"
-#   Addisino -> "resolution": "same entity", "alias": false   (keep "Addsino")
-#   and write why in "note"
-python3 run.py replay --data example/dow-1260h      # PASS
+python3 run.py replay --data example/dow-1260h
+```
+
+It fails with two differences and, under each one, what to compare: the Federal Register page,
+the DoW PDF, and what earlier years' lists printed. For Addisino it shows that the 2025 list
+printed "Addsino" and no earlier list ever printed "Addisino".
+
+**Step 2. Judge each one, and answer.** Open the links, compare, then:
+
+```
+python3 run.py decide --data example/dow-1260h
+```
+
+It asks one question at a time, in plain words, and records your answer and your reason:
+
+```
+1. Two spellings. The Federal Register notice prints 'Addisino Co., Ltd'; the list has 'Addsino Co., Ltd.'.
+      Federal Register: https://www.govinfo.gov/...2026-11571.pdf#page=2
+      DoW list (open in a browser, search for the name): https://media.defense.gov/...
+      earlier lists print 'Addsino Co., Ltd.': 2025 (90 FR 1105)
+      no earlier list prints 'Addisino Co., Ltd'; close: 2025 printed 'Addsino Co., Ltd.'
+    Same company, spelled two ways? [y]es / [n]o / [s]kip > y
+    Is the notice's spelling 'Addisino Co., Ltd' a mistake (keep it off the page)? [Y/n] > y
+    Why? One line: what the sources show. > The DoW PDF and the 2025 list print Addsino.
+```
+
+When every difference is decided, the replay passes. Your answers are saved in
+`example/dow-1260h/replay-exceptions.json`: the record of what a person decided and why.
+
+**Step 3. Approve and publish (the example only).**
+
+```
 python3 run.py show --data example/dow-1260h
 python3 run.py approve <id> --data example/dow-1260h
 python3 run.py page --data example/dow-1260h        # writes example/index.html
-git checkout example/                              # reset the example
+git checkout example/                              # reset the example to try again
 ```
 
-The checks file is the record of what a person decided and why. The replay fails until every
-difference is decided.
+## How to judge a difference
+
+The tool finds a difference; a person decides it. Ask, in this order:
+
+1. **What does the issuing agency's own document say?** The DoW PDF is DoW's list. The Federal
+   Register copy is a reprint, typed again, and reprints carry typos. When the two disagree on a
+   letter, the DoW PDF wins unless something shows otherwise.
+2. **What did earlier years print?** `replay` and `decide` show it. A spelling that every earlier
+   list printed, and that only this year's reprint changes, is very likely a typo.
+3. **Is it a rename?** Companies change names. The notices sometimes say so ("formerly ..."). A
+   different word, not a different letter, points to a rename, or to a different company. Check
+   the company's own filings before you treat two names as one.
+4. **Write the reason down.** One line: which sources you compared and what each printed. The next
+   person, or you next year, reads it.
+
+Earlier years' lists are evidence, not the answer: an old list can carry a typo too.
+
+## Earlier years' lists
+
+`data/dow-1260h/history/` keeps the 2021, 2024 and 2025 annual lists as printed in the Federal
+Register, saved with their fingerprints like every other source. They never build the list; they
+are there to compare spellings.
+
+```
+python3 run.py spelling            # names this year that no earlier list prints, but that are close to one that does
+python3 run.py history add DOC     # save another year's list by its Federal Register document number (network)
+```
+
+`spelling` is plain string comparison, no AI. On the 2026 list it finds "Addisino" (2025:
+"Addsino"), and three more worth a look: "Phenix Optical" (2025: "Phoenix Optics"), "Chengdu
+Mengsheng Electronic" (2025: "Chengdu M&S Electronics") and "China Communications Construction
+(USA)" (2025: "Constructions USA, Inc."). Each could be a typo, a rename or a different company.
+
+**The DoW PDFs:** defense.gov blocks scripts, so save them yourself, from your browser, into
+`data/dow-1260h/dow-pdf/`, named by date (for example `2026-06-08.pdf`). `replay` and `decide` list
+them next to each difference. The scripts never read them: they are for the person deciding.
 
 ## The AI step
 
@@ -101,6 +165,11 @@ The rules cannot read 2027-01234. Send its text to <model> at <url>? [y/N]
 If you say yes, the model proposes the names. Code then rejects any name that is not printed word
 for word in the notice, and any removal of a company not on the list. You still approve the result.
 The weekly GitHub job never calls a model, because no one is there to say yes.
+
+**A second opinion on spellings.** `decide` can also ask a model, once, for its guess on all the
+spelling pairs together ("typo", "rename", "different companies" or "unsure", with one sentence
+why). It asks you first, sends only the names and what earlier lists printed, and labels the answer
+as a guess. You still decide, and you still write the reason.
 
 Try it on the made-up example notice:
 
@@ -144,8 +213,10 @@ tab, or run `python3 run.py stale` yourself.
 | `listwatch/` | The pipeline: find, save, read by rule, propose. Standard library only. |
 | `listwatch/lists/dow_1260h.py` | The 1260H rules, including the known slips in the notices' own text. |
 | `data/dow-1260h/` | The live list, its saved notices, approved proposals, and `replay-exceptions.json` (each difference and how it was decided). |
+| `data/dow-1260h/history/` | Earlier years' annual lists, kept to compare spellings. |
+| `data/dow-1260h/dow-pdf/` | Where you save the DoW PDFs by hand. |
 | `example/` | The classroom example and a made-up unfamiliar notice. |
-| `prompts/listwatch.md` | The only prompt, used only by the AI step. |
+| `prompts/` | The two prompts, used only by the AI step: reading an unfamiliar notice, and the spelling second opinion. |
 | `tests/`, `test_replay.py` | The proof. The rules are tested against the real notices. |
 
 ## What this is not
