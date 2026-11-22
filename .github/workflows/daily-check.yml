@@ -1,17 +1,19 @@
-# Weekly: look for new Section 1260H notices in the Federal Register. If there is one, save it, read it
+# Daily: look for new Section 1260H notices in the Federal Register. If there is one, save it, read it
 # by rule, and open a pull request. Nothing is published until a person merges that pull request.
 # No AI step runs here (there is no one at the keyboard to say yes). No third-party actions, no secrets
 # beyond the job's own short-lived token. Runs only on a schedule or by hand, never on pull requests.
-name: weekly-check
+name: daily-check
 on:
   schedule:
-    - cron: "17 12 * * 1"
+    # 07:07 UTC every day: 2:07 a.m. Eastern in winter (EST), 3:07 a.m. in summer (EDT).
+    # GitHub reads cron times in UTC only; a few minutes past the hour avoids the busiest start times.
+    - cron: "7 7 * * *"
   workflow_dispatch:
 permissions:
   contents: write
   pull-requests: write
 concurrency:
-  group: weekly-check
+  group: daily-check
   cancel-in-progress: false
 jobs:
   check:

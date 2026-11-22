@@ -16,11 +16,11 @@ removed companies stay visible, with the date, the reason and the notice.
 
 ```
  Federal Register API ──► save the notice ──► read it by rule ──► proposal ──► a person approves ──► page
-  (weekly, on GitHub)     (with its SHA-256)   (fixed Python)     (what would    (merges the pull
+  (daily, on GitHub)      (with its SHA-256)   (fixed Python)     (what would    (merges the pull
                                                                   change)        request)
 ```
 
-1. **Detect.** Every Monday a GitHub job asks the Federal Register API for notices that match
+1. **Detect.** Every night, at about 2 a.m. Eastern, a GitHub job asks the Federal Register API for notices that match
    "1260H". The DoW website blocks scripts, so the Federal Register (federalregister.gov and
    govinfo.gov) is the source: it is the official journal where DoW publishes these notices.
 2. **Save first.** Each new notice is saved with its SHA-256 fingerprint before anything reads it
@@ -171,7 +171,7 @@ The rules cannot read 2027-01234. Send its text to <model> at <url>? [y/N]
 
 If you say yes, the model proposes the names. Code then rejects any name that is not printed word
 for word in the notice, and any removal of a company not on the list. You still approve the result.
-The weekly GitHub job never calls a model, because no one is there to say yes.
+The daily GitHub job never calls a model, because no one is there to say yes.
 
 **A second opinion on spellings.** `decide` can also ask a model, once, for its guess on all the
 spelling pairs together ("typo", "rename", "different companies" or "unsure", with one sentence
@@ -205,10 +205,10 @@ to your own computer. Any other address must use `https`.
 
 1. Fork or copy this repo.
 2. **Settings → Actions → General → Workflow permissions:** tick "Allow GitHub Actions to create and
-   approve pull requests". Without it the weekly job cannot open its pull request.
+   approve pull requests". Without it the daily job cannot open its pull request.
 3. **Settings → Pages:** deploy from the `main` branch, folder `/docs`.
 4. **Settings → Branches:** protect `main` so that changes arrive only by pull request.
-5. **Actions → weekly-check → Run workflow** to try it once.
+5. **Actions → daily-check → Run workflow** to try it once.
 
 GitHub pauses scheduled jobs in a repo with no activity for 60 days. Re-enable it on the Actions
 tab, or run `python3 run.py stale` yourself.
