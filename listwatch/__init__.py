@@ -21,7 +21,9 @@ Design rule (deterministic first):
 SCHEMA_PROPOSAL = "listwatch/proposal@1"
 SCHEMA_NOTICES = "listwatch/notices@1"
 SCHEMA_REGISTER = "listwatch/removed@1"
+SCHEMA_EVENTS = "listwatch/events@1"
 SCHEMA_SOURCE = "listwatch/source@1"
+SCHEMA_PDF_SOURCE = "listwatch/pdf-source@1"
 
 
 class ListwatchError(Exception):

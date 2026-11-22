@@ -260,7 +260,7 @@ class EarlierLists(unittest.TestCase):
 
     def test_saved_earlier_lists_match_their_hashes_and_read_whole(self):
         counts = {h["doc"]: len(h["names"]) for h in history.load(R, self.HIST)}
-        self.assertEqual(counts, {"2025-00070": 133, "2024-06895": 77, "2021-13753": 47})
+        self.assertEqual(counts, {"2025-00070": 133, "2024-06895": 73, "2021-13753": 47})   # 77 before the "(SMIC NICM)" wrap fix
 
     def test_the_2025_list_prints_addsino_and_its_misprinted_bracket_is_read(self):
         h = next(h for h in history.load(R, self.HIST) if h["doc"] == "2025-00070")
@@ -356,3 +356,49 @@ class TheAIStep(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RemovalHistory(unittest.TestCase):
+    """Every company that left the list since 2021 is accounted for, from saved sources, by fixed
+    rules. No network, no AI."""
+
+    def run_cmd(self, fn):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            code = fn()
+        return code, out.getvalue()
+
+    def test_completeness_passes_on_the_saved_sources(self):
+        code, out = self.run_cmd(run.cmd_completeness)
+        self.assertEqual(code, 0, out)
+        self.assertIn("completeness: OK", out)
+
+    def test_removals_quote_the_documents(self):
+        code, out = self.run_cmd(run.cmd_removals)
+        self.assertEqual(code, 0, out)
+        self.assertIn('reason (entity note): "No longer owned by SMIC"', out)
+        self.assertIn("No reason stated in 89 FR 102868.", out)
+        self.assertIn("22 removed by a document, 1 with no notice", out)
+
+    def test_a_missing_decision_fails_the_check(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        shutil.copytree(run.LIVE, tmp / "dow-1260h")
+        p = tmp / "dow-1260h" / "history-decisions.json"
+        data = json.loads(p.read_text())
+        data["decisions"] = [d for d in data["decisions"] if d["id"] != "westone-rename"]
+        p.write_text(json.dumps(data))
+        with mock.patch.object(run, "LIVE", tmp / "dow-1260h"):
+            code, out = self.run_cmd(run.cmd_completeness)
+        self.assertEqual(code, 1)
+        self.assertIn("Westone Information Industry Co., Ltd.' left the list and nothing explains it", out)
+
+    def test_an_edited_pdf_text_is_refused(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp)
+        shutil.copytree(run.LIVE, tmp / "dow-1260h")
+        t = tmp / "dow-1260h" / "dow-pdf" / "dow-2024-01-31.txt"
+        t.write_bytes(t.read_bytes().replace(b"No longer owned by SMIC", b"No longer owned by anyone"))
+        with mock.patch.object(run, "LIVE", tmp / "dow-1260h"):
+            with self.assertRaises(ListwatchError):
+                self.run_cmd(run.cmd_completeness)

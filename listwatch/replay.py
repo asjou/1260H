@@ -92,11 +92,14 @@ class Report:
     key_missing: bool = False
     rows: int = 0
     require_key: bool = True
+    register_mismatches: list[str] = field(default_factory=list)   # rebuilt removals vs removed.json
+    history_problems: list[str] = field(default_factory=list)      # the completeness check, if run
 
     @property
     def ok(self) -> bool:
         key_problem = self.key_unchecked or self.key_missing if self.require_key else False
-        return not (self.differences or self.key_mismatches or key_problem)
+        return not (self.differences or self.key_mismatches or key_problem or self.register_mismatches
+                    or self.history_problems)
 
     def lines(self) -> list[str]:
         out = [f"replay: {self.rows} rows" + (f"; answer key {self.key_checked} checked, {self.key_unchecked} unchecked"
@@ -115,15 +118,40 @@ class Report:
             else:
                 out.append(f"  UNRESOLVED: on the list, not in the notices: {d['store']}")
         out += [f"  ANSWER KEY: {m}" for m in self.key_mismatches]
+        out += [f"  REGISTER: {m}" for m in self.register_mismatches]
+        out += [f"  HISTORY: {m}" for m in self.history_problems]
         out.append("replay: PASS" if self.ok else "replay: FAIL")
         return out
 
 
-def check(rules, folder: Path, docs: list[dict], current: list[dict], *, require_key: bool = True) -> Report:
+def compare_register(rebuilt: list[dict], stored: list[dict], history: set[str] = frozenset()) -> list[str]:
+    """The removals the replayed notices make must all be in the stored register, with the same
+    date and document. A stored entry the notices do not make is allowed only when the list's
+    history accounts for it (`history`: name keys removed by earlier documents)."""
+    have = {key(e["name"]): e for e in stored}
+    out = []
+    for e in rebuilt:
+        s = have.get(key(e["name"]))
+        if s is None:
+            out.append(f"{e['name']}: removed by {e.get('source_doc', '?')}, not in removed.json")
+        elif (s.get("removed_on"), s.get("source_doc")) != (e.get("removed_on"), e.get("source_doc")):
+            out.append(f"{e['name']}: removed.json says {s.get('removed_on')} / {s.get('source_doc')}, "
+                       f"the notices say {e.get('removed_on')} / {e.get('source_doc')}")
+    made = {key(e["name"]) for e in rebuilt}
+    out += [f"{s['name']}: in removed.json, but no saved document removes it" for k, s in have.items()
+            if k not in made and k not in history]
+    return out
+
+
+def check(rules, folder: Path, docs: list[dict], current: list[dict], *, require_key: bool = True,
+          register: list[dict] | None = None, history: set[str] = frozenset()) -> Report:
     """`require_key=False` skips the answer-key gate (a copy that ships no answer key); every other
-    check is the same."""
-    rows, _register, _used = rebuild(rules, folder, docs)
+    check is the same. With `register` (the stored removed.json entries), the removals the notices
+    make are compared with it too; `history` names the removals earlier documents account for."""
+    rows, rebuilt_register, _used = rebuild(rules, folder, docs)
     rep = Report(rows=len(rows), require_key=require_key)
+    if register is not None:
+        rep.register_mismatches = compare_register(rebuilt_register, register, history)
     exc = load_exceptions(folder)
     cmp = P.compare({"roster": rows, "removes": []}, current, equivalents(folder))
     found = [{"parsed": r["name"], "store": None, "cite": r.get("source_cite", ""), "url": r.get("source_url", "")}
@@ -153,7 +181,9 @@ def check(rules, folder: Path, docs: list[dict], current: list[dict], *, require
         if e.get("resolution") == "same entity" and id(e) not in paired and e not in rep.resolved:
             rep.resolved.append(e)
 
-    answer = _read_json(folder / "answer-key.json", {"entries": []})["entries"]
+    # history entries (kind "history") are checked by the caller against the history statements
+    answer = [e for e in _read_json(folder / "answer-key.json", {"entries": []})["entries"]
+              if e.get("kind") != "history"]
     rep.key_missing = not answer
     # The key checks how the annual notice was read, so it is compared with that notice's rows,
     # not with the list after later removals.

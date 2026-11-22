@@ -1,0 +1,14 @@
+{
+  "schema": "listwatch/pdf-source@1",
+  "document": "dow-2024-01-31",
+  "title": "Entities Identified as Chinese Military Companies Operating in the United States in Accordance With Section 1260H of the William M. (\u201cMac\u201d) Thornberry National Defense Authorization Act for Fiscal Year 2021",
+  "release_date": "2024-01-31",
+  "official_url": "https://media.defense.gov/2024/Jan/31/2003384819/-1/-1/0/1260H-LIST.PDF",
+  "sha256": "1dea7f7c798ce13beb024738e377b8b914cfb9308755a9c06e5c00dcaaac912f",
+  "bytes": 139334,
+  "text_sha256": "8daecf80a784b5b0ed3eb74e4dad9cb6849f2dd9837dda6fc6af118193ad4403",
+  "extractor": "pdftotext version 26.01.0 -layout -enc UTF-8",
+  "saved_at": "2026-11-22T21:08:07+00:00",
+  "archived_url": "https://web.archive.org/web/20240131194654/https://media.defense.gov/2024/Jan/31/2003384819/-1/-1/0/1260H-LIST.PDF",
+  "archived_at": "2024-01-31T19:46:54Z"
+}

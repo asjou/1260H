@@ -55,6 +55,8 @@ python3 run.py replay    # re-read the saved notices and compare with the list
 python3 run.py decide    # answer a question for each difference the replay found
 python3 run.py review    # the same, as a clickable page in your browser (this computer only)
 python3 run.py spelling  # compare this year's names with earlier years' lists
+python3 run.py completeness  # prove every company that left since 2021 is accounted for
+python3 run.py removals  # every removal since 2021, in the government's own words
 python3 run.py page      # rebuild docs/index.html
 python3 run.py check     # look for new notices (network)
 python3 run.py show      # what each open proposal would change
@@ -153,9 +155,43 @@ python3 run.py history add DOC     # save another year's list by its Federal Reg
 Mengsheng Electronic" (2025: "Chengdu M&S Electronics") and "China Communications Construction
 (USA)" (2025: "Constructions USA, Inc."). Each could be a typo, a rename or a different company.
 
-**The DoW PDFs:** defense.gov blocks scripts, so save them yourself, from your browser, into
-`data/dow-1260h/dow-pdf/`, named by date (for example `2026-06-08.pdf`). `replay` and `decide` list
-them next to each difference. The scripts never read them: they are for the person deciding.
+**The DoW PDFs:** defense.gov blocks scripts, so the five list PDFs in `data/dow-1260h/dow-pdf/`
+were saved by hand from a browser, as `dow-<date on the web address>.pdf`. Each matches its Wayback
+Machine copy byte for byte. Beside each is its text, made once with `pdftotext -layout`, and a record
+with the official address, the Wayback copy and the SHA-256 of both. `replay` and `decide` list the
+PDFs next to each difference. The scripts read the saved text (after checking both fingerprints),
+for two things only: the 2022 list, and the removal sections. See `dow-pdf/README.md`.
+
+## Removals since 2021
+
+The current list says who is on it. It does not say who was taken off, or why. That is spread over
+four annual lists, six amendment notices and the Department's own PDFs, which do not always say the
+same thing: the January 2024 PDF names three removals, with a reason beside each, that the Federal
+Register copy of the same list leaves out.
+
+```
+python3 run.py completeness   # every company that left the list is accounted for, or it fails
+python3 run.py removals       # each removal, with what the documents say, quoted word for word
+```
+
+Both are fixed rules over saved files: no network, no AI. `completeness` walks the lists in order
+(2021, 2022, 2024, 2025, 2026, and the list as it stands) and, for each pair, requires every company
+on the earlier list and not the later one to be explained:
+
+- by a document that removes it in between (a Federal Register notice, or a removal section in the
+  Department's PDF); or
+- by an approved decision in `data/dow-1260h/history-decisions.json`, for the few that no document
+  removes: a rename the list states, a name printed differently under the same parent, a company the
+  2025 list keeps only in a footnote, and one company dropped with no notice at all.
+
+It also requires every removal a document makes to match a company that really left, and every
+quote a decision cites to appear word for word in the saved document. Delete a decision, or change
+one word of a saved text, and it fails. That is the safeguard: not how the rows were read, but proof
+that none is missing.
+
+`removals` says, for each one, whether the document gives a reason or only says the company is
+removed ("No reason stated in …"), and whether a quote is printed once over a group of names or
+beside one name. A heading over ten names is not a finding about each of them.
 
 ## The AI step
 
@@ -218,10 +254,12 @@ tab, or run `python3 run.py stale` yourself.
 | Path | What it is |
 |---|---|
 | `listwatch/` | The pipeline: find, save, read by rule, propose. Standard library only. |
-| `listwatch/lists/dow_1260h.py` | The 1260H rules, including the known slips in the notices' own text. |
+| `listwatch/lists/dow_1260h.py` | The 1260H rules, including the known slips in the notices' own text and the scan slips in the 2022 PDF. |
+| `listwatch/historycheck.py`, `listwatch/completeness.py` | The removal history and the check that none is missing. |
 | `data/dow-1260h/` | The live list, its saved notices, approved proposals, and `replay-exceptions.json` (each difference and how it was decided). |
-| `data/dow-1260h/history/` | Earlier years' annual lists, kept to compare spellings. |
-| `data/dow-1260h/dow-pdf/` | Where you save the DoW PDFs by hand. |
+| `data/dow-1260h/history/` | Earlier years' annual lists, and (in `notices/`) the 2024 removal and designation notices. |
+| `data/dow-1260h/dow-pdf/` | The Department's list PDFs, each with its text and a record of where it came from. |
+| `data/dow-1260h/history-decisions.json` | The decisions for companies no document removes, each with its evidence. |
 | `example/` | The classroom example and a made-up unfamiliar notice. |
 | `review.py` | The clickable review page: a small web server on your own computer, standard library only. |
 | `prompts/` | The two prompts, used only by the AI step: reading an unfamiliar notice, and the spelling second opinion. |

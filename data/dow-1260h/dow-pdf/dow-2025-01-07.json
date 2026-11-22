@@ -1,0 +1,14 @@
+{
+  "schema": "listwatch/pdf-source@1",
+  "document": "dow-2025-01-07",
+  "title": "Entities Identified as Chinese Military Companies Operating in the United States",
+  "release_date": "2025-01-07",
+  "official_url": "https://media.defense.gov/2025/Jan/07/2003625471/-1/-1/1/ENTITIES-IDENTIFIED-AS-CHINESE-MILITARY-COMPANIES-OPERATING-IN-THE-UNITED-STATES.PDF",
+  "sha256": "1d9daf2a07698475a509be9d5a1e485ed6deb2d0375fa81fb9a2b17088bba9eb",
+  "bytes": 139309,
+  "text_sha256": "4c9c40ee0bbbe663c08e2d837b088ebffad8f985c1cf06dd4c3f8c834311478d",
+  "extractor": "pdftotext version 26.01.0 -layout -enc UTF-8",
+  "saved_at": "2026-11-22T21:08:07+00:00",
+  "archived_url": "https://web.archive.org/web/20250108015922/https://media.defense.gov/2025/Jan/07/2003625471/-1/-1/1/ENTITIES-IDENTIFIED-AS-CHINESE-MILITARY-COMPANIES-OPERATING-IN-THE-UNITED-STATES.PDF",
+  "archived_at": "2025-01-08T01:59:22Z"
+}
