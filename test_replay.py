@@ -372,13 +372,16 @@ class RemovalHistory(unittest.TestCase):
         code, out = self.run_cmd(run.cmd_completeness)
         self.assertEqual(code, 0, out)
         self.assertIn("completeness: OK", out)
+        self.assertIn("Not legal advice and not an official source.", out)
 
     def test_removals_quote_the_documents(self):
         code, out = self.run_cmd(run.cmd_removals)
         self.assertEqual(code, 0, out)
-        self.assertIn('reason (entity note): "No longer owned by SMIC"', out)
-        self.assertIn("No reason stated in 89 FR 102868.", out)
-        self.assertIn("22 removed by a document, 1 with no notice", out)
+        self.assertIn('stated ground (entity note): "No longer owned by SMIC"', out)
+        self.assertIn("No specific reason stated in 89 FR 102868.", out)
+        self.assertIn("22 removed by a document and not re-listed; 1 no longer printed, with no notice", out)
+        self.assertIn("PDF posted 2024-01-31 (date in its web address)", out)
+        self.assertIn("Not legal advice and not an official source.", out)
 
     def test_a_missing_decision_fails_the_check(self):
         tmp = Path(tempfile.mkdtemp())
@@ -400,5 +403,6 @@ class RemovalHistory(unittest.TestCase):
         t = tmp / "dow-1260h" / "dow-pdf" / "dow-2024-01-31.txt"
         t.write_bytes(t.read_bytes().replace(b"No longer owned by SMIC", b"No longer owned by anyone"))
         with mock.patch.object(run, "LIVE", tmp / "dow-1260h"):
-            with self.assertRaises(ListwatchError):
-                self.run_cmd(run.cmd_completeness)
+            code, out = self.run_cmd(run.cmd_completeness)
+        self.assertEqual(code, 2)
+        self.assertIn("does not match its recorded SHA-256", out)

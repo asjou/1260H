@@ -1,5 +1,4 @@
-"""The completeness check: every company that left the list is accounted for (plan 2026-11-22-001
-KD8, U5).
+"""The completeness check: every company that left the list is accounted for.
 
 Walk the list's snapshots in date order. For each pair (an earlier list, the next one):
   - every company on the earlier list and not on the next must be explained, by a document that
@@ -44,9 +43,9 @@ def _find(row: dict, rows: list[dict]) -> dict | None:
     return next((r for r in rows if keys(r) & ks), None)
 
 
-LABELS = {"rename": "renamed", "different_name": "different name", "alias": "kept as an alias",
+LABELS = {"rename": "renamed", "different_name": "different name", "alias": "not printed; parent still listed (editor)",
           "listed_elsewhere": "listed elsewhere", "withheld": "withheld (editor)",
-          "no_notice": "dropped without notice"}
+          "no_notice": "not printed, no notice"}
 TARGETED = ("rename", "different_name", "alias")
 
 

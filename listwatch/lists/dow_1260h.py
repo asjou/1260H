@@ -429,7 +429,7 @@ def pdf_roster(pages: list[str], doc: str) -> list[dict]:
     return out
 
 
-# ---- removal statements: what each document says about a removal (plan 2026-11-22-001 U4) ----
+# ---- removal statements: what each document says about a removal ----
 #
 # Every quote is copied from the saved text, never written here. Line breaks are joined (a line that
 # ends in a hyphen joins without a space: "116-" + "283" -> "116-283"); nothing else changes. Each
@@ -611,7 +611,7 @@ def pdf_statements(pages: list[str], rec: dict) -> list[dict]:
     return out
 
 
-# ---- history: the snapshots and documents the completeness check walks (plan 2026-11-22-001 U5) ----
+# ---- history: the snapshots and documents the completeness check walks ----
 # Each list snapshot is read from its Federal Register notice when there is one, else from the DoW
 # PDF. A snapshot's date is the later of the two publications, so the DoW PDF released a few days
 # (or, in 2024, two months) before its Federal Register copy falls inside the right interval.

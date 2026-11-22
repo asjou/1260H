@@ -1,4 +1,4 @@
-"""DoW list PDFs as saved sources (plan 2026-11-22-001 KTD2).
+"""DoW list PDFs as saved sources.
 
 The Department's own list PDF sometimes says more than the Federal Register copy: the January 2024
 PDF names three removals and their reasons that the Federal Register version (89 FR 22698) leaves

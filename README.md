@@ -1,14 +1,14 @@
 # The Section 1260H list, kept current from the Federal Register
 
-The Department of Defense (aka War; "DoW" below) names "Chinese military
+The Department of Defense (now also styled the Department of War; "DoW" below) names "Chinese military
 companies" under Section 1260H of the FY2021 NDAA. We know of no official, current,
 machine-readable copy of that list. DoW publishes an annual list, then adds and removes companies
-by separate Federal Register notices. For example, DoW removed WuXi AppTec on 10 November 2026
-(91 FR 72536) "in compliance with" a preliminary injunction issued on 7 August 2026. The case is
-not over, and the company could be listed again.
+by separate Federal Register notices. For example, a notice published 10 November 2026 (91 FR 72536)
+removed WuXi AppTec "in compliance with" a preliminary injunction issued on 7 August 2026. The notice
+says the removal is "without prejudice to relisting the entity on additional or supplementary grounds".
 
 This repo keeps the net list. Every row links to the page of the official notice it came from, and
-removed companies stay visible, with the date, the reason and the notice.
+removed companies stay visible, with the date, what the notice says, and the notice.
 
 **The page:** <https://asjou.github.io/1260H/>
 
@@ -55,8 +55,8 @@ python3 run.py replay    # re-read the saved notices and compare with the list
 python3 run.py decide    # answer a question for each difference the replay found
 python3 run.py review    # the same, as a clickable page in your browser (this computer only)
 python3 run.py spelling  # compare this year's names with earlier years' lists
-python3 run.py completeness  # prove every company that left since 2021 is accounted for
-python3 run.py removals  # every removal since 2021, in the government's own words
+python3 run.py completeness  # check every company that left since 2021 has a document or a recorded decision
+python3 run.py removals  # every removal since 2021, quoting the documents
 python3 run.py page      # rebuild docs/index.html
 python3 run.py check     # look for new notices (network)
 python3 run.py show      # what each open proposal would change
@@ -156,22 +156,27 @@ Mengsheng Electronic" (2025: "Chengdu M&S Electronics") and "China Communication
 (USA)" (2025: "Constructions USA, Inc."). Each could be a typo, a rename or a different company.
 
 **The DoW PDFs:** defense.gov blocks scripts, so the five list PDFs in `data/dow-1260h/dow-pdf/`
-were saved by hand from a browser, as `dow-<date on the web address>.pdf`. Each matches its Wayback
-Machine copy byte for byte. Beside each is its text, made once with `pdftotext -layout`, and a record
-with the official address, the Wayback copy and the SHA-256 of both. `replay` and `decide` list the
-PDFs next to each difference. The scripts read the saved text (after checking both fingerprints),
-for two things only: the 2022 list, and the removal sections. See `dow-pdf/README.md`.
+were saved by hand from a browser, as `dow-<date on the web address>.pdf`. When saved, each had the
+same SHA-256 as the Wayback Machine capture of its official address; download the capture to check.
+Beside each is its text, made once with `pdftotext -layout`, and a record with the official address,
+the Wayback capture's address, and the SHA-256 of the PDF and of its text. `replay` and `decide` list
+the PDFs next to each difference. The scripts use the PDFs' saved text (after checking both
+fingerprints) for two things only: the 2022 list, and the removal sections. The 2022 PDF is a scan;
+its text has scanner slips ("Chioa" for "China", "Dn" for "DJI"), corrected openly in
+`SCAN_ERRATA` in the rules file. See `dow-pdf/README.md`.
 
 ## Removals since 2021
 
 The current list says who is on it. It does not say who was taken off, or why. That is spread over
-four annual lists, six amendment notices and the Department's own PDFs, which do not always say the
-same thing: the January 2024 PDF names three removals, with a reason beside each, that the Federal
-Register copy of the same list leaves out.
+five annual lists (the 2022 list only as a PDF), seven amendment notices and the Department's own
+PDFs, which do not always say the same thing: the January 2024 PDF lists three earlier-listed
+companies under a heading, "The Following Entities Did Not Meet Some or All of the Requirements of
+Section 1260H…", with a note beside each, and the Federal Register copy of the same list leaves that
+section out.
 
 ```
-python3 run.py completeness   # every company that left the list is accounted for, or it fails
-python3 run.py removals       # each removal, with what the documents say, quoted word for word
+python3 run.py completeness   # every company that left has a document or a recorded decision, or it fails
+python3 run.py removals       # each removal, quoting what the documents say
 ```
 
 Both are fixed rules over saved files: no network, no AI. `completeness` walks the lists in order
@@ -181,17 +186,23 @@ on the earlier list and not the later one to be explained:
 - by a document that removes it in between (a Federal Register notice, or a removal section in the
   Department's PDF); or
 - by an approved decision in `data/dow-1260h/history-decisions.json`, for the few that no document
-  removes: a rename the list states, a name printed differently under the same parent, a company the
-  2025 list keeps only in a footnote, and one company dropped with no notice at all.
+  removes: a rename the list states, names printed differently under the same parent, a subsidiary
+  no longer printed whose parent is still listed (CNOOC Limited), a company the 2025 list keeps only
+  in a footnote, and one company no longer printed, with no notice. Each decision says its basis: a
+  document, where the lists print the names, or a person's judgment.
 
 It also requires every removal a document makes to match a company that really left, and every
 quote a decision cites to appear word for word in the saved document. Delete a decision, or change
-one word of a saved text, and it fails. That is the safeguard: not how the rows were read, but proof
-that none is missing.
+one word of a saved text, and it fails. That is the safeguard: a check that every company that left
+has a cited document or a recorded decision. It does not test whether a decision is right, or the
+saved files against the live government copies; the fingerprints are recorded in this same repo.
 
-`removals` says, for each one, whether the document gives a reason or only says the company is
-removed ("No reason stated in …"), and whether a quote is printed once over a group of names or
-beside one name. A heading over ten names is not a finding about each of them.
+`removals` says, for each one, whether a document states a ground or only says the company is
+removed ("No specific reason stated in …"), and whether a quote is printed once over a group of
+names or beside one name. A heading over ten names gives one ground for the group; the documents
+give no facts for each company. Labels and the "No specific reason" marker are this repo's; notes
+marked "editor's note" are a person's, drawn from the documents cited. Leaving this list is not a
+finding about a company's status under any other list or restriction.
 
 ## The AI step
 

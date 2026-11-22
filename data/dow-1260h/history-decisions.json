@@ -1,6 +1,6 @@
 {
   "schema": "listwatch/history-decisions@2",
-  "note": "Decisions for companies that left the § 1260H list with no document removing them. Each cites quotes that `python3 run.py completeness` checks word for word against the saved documents, and has a basis: \"document\" (a government document states it), \"placement\" (inferred from where the lists print the names) or \"editor\" (a person's judgment). A decision counts only once its status is \"approved\". Kinds: rename (the list states it), different_name (printed under another name, same parent, no removal notice), alias (folded into a parent entry), listed_elsewhere (still listed though the list of names omits it), no_notice (left with no removal notice).",
+  "note": "Decisions for companies that left the § 1260H list with no document removing them. Each cites quotes that `python3 run.py completeness` checks word for word against the saved documents, and has a basis: \"document\" (a government document states it), \"placement\" (inferred from where the lists print the names) or \"editor\" (a person's judgment). A decision counts only once its status is \"approved\". Kinds: rename (the list states it), different_name (printed under another name, same parent, no removal notice), alias (folded into a parent entry), listed_elsewhere (still listed though the list of names omits it), no_notice (no longer printed, with no removal notice).",
   "decisions": [
     {
       "id": "cnooc-limited-alias",
@@ -30,7 +30,7 @@
       "transition": "2024→2025",
       "name": "Hesai Technology Co., Ltd.",
       "basis": "document",
-      "reader_note": "Removed and designated again by notices published October 29, 2024 (89 FR 86230), which reprint, in the correct order, notices first published October 23, 2024 (89 FR 84555, 89 FR 84547). The January 2025 list does not print Hesai among its names; its footnote 1 states that Hesai \"remains a Chinese military company\". The 2026 list prints \"Hesai Group (also known as Hesai Technology Co., Ltd.)\".",
+      "reader_note": "Removed and designated again by notices published October 29, 2024 (89 FR 86230), which reprint, in the correct order, notices first published October 23, 2024 (89 FR 84555; 89 FR 84547, designation at 84548). The January 2025 list does not print Hesai among its names; its footnote 1 states that Hesai \"remains a Chinese military company\". The 2026 list prints \"Hesai Group (also known as Hesai Technology Co., Ltd.)\".",
       "evidence": [
         {
           "source_doc": "2024-25167",
@@ -106,7 +106,7 @@
       "kind": "no_notice",
       "transition": "2025→2026",
       "name": "Guangzhou Wenchong Shipyard Co., Ltd.",
-      "basis": "document",
+      "basis": "editor",
       "reader_note": "Guangzhou Wenchong Shipyard Co., Ltd. — listed 2025 (90 FR 1106, under COMEC). Not printed in the 2026 list (91 FR 35192). No removal notice; no reason stated.",
       "evidence": [
         {

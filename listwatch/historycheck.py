@@ -1,5 +1,4 @@
-"""A list's history, gathered from its saved sources for the completeness check (plan 2026-11-22-001
-U5, U9). Shared by every caller: the same code runs in the app and in a standalone copy.
+"""A list's history, gathered from its saved sources for the completeness check.
 
 The list's folder holds:
   sources/              the notices the current list rests on
