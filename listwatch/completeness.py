@@ -149,3 +149,38 @@ def check(lists: list[dict], statements: list[dict], decisions: list[dict],
         if not any(a["date"] < s["published"] <= b["date"] for a, b in zip(lists, lists[1:])):
             rep.problems.append(f"{s['source_doc']}: {s['name']!r} falls outside every pair of lists ({s['published']})")
     return rep
+
+
+def first_listed(lists: list[dict], decisions: list[dict],
+                 equivalents: list[tuple[str, str]] = ()) -> list[dict]:
+    """When each company was first printed: the lists in date order, each row joined to the
+    company it continues by any shared spelling, a recorded same-company equivalent, or an
+    approved rename / different-name decision (the old name continues under the new one). A
+    company dropped and printed again later keeps its first date. An alias decision folds a
+    name into its parent and is not followed: they are different companies.
+
+    Returns one entry per company: {"names": every spelling seen, "first_listed": date,
+    "list": the id of the first list that prints it, "merged": True when two rows of one list
+    fell into it (the date is then not safe to show)}."""
+    renames = [d for d in decisions if d.get("status") == "approved" and d["kind"] in ("rename", "different_name")]
+    chains: list[dict] = []
+    for x in sorted(({**x, "names": _with_equivalents(x["names"], list(equivalents))} for x in lists),
+                    key=lambda x: x["date"]):
+        hit_here: set[int] = set()
+        for row in x["names"]:
+            ks = keys(row)
+            for d in renames:
+                if key(d["to"]) in ks:
+                    ks |= keys({"name": d["name"]})
+            c = next((c for c in chains if c["keys"] & ks), None)
+            if c is None:
+                c = {"keys": set(), "names": [], "first_listed": x["date"], "list": x["id"], "merged": False}
+                chains.append(c)
+            elif id(c) in hit_here:
+                c["merged"] = True
+            hit_here.add(id(c))
+            c["keys"] |= ks
+            for n in (row["name"], *row.get("aka", [])):
+                if n and n not in c["names"]:
+                    c["names"].append(n)
+    return [{k: c[k] for k in ("names", "first_listed", "list", "merged")} for c in chains]

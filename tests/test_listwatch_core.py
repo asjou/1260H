@@ -293,6 +293,49 @@ class Page(unittest.TestCase):
         self.assertIn("<th><button>Listed in</button></th>", html)
         self.assertIn("<td>2026-06-10</td></tr>", html)
 
+    def test_with_history_rows_show_first_listed_and_every_removal(self):
+        from listwatch import completeness
+        lists = [{"id": "2021", "date": "2021-06-03", "names": [{"name": "OLD NAME CO.", "aka": []}]},
+                 {"id": "2025", "date": "2025-01-07", "names": [{"name": "New Name Co.", "aka": []},
+                                                                {"name": "Late Co", "aka": []}]}]
+        dec = [{"kind": "rename", "name": "OLD NAME CO.", "to": "New Name Co.", "status": "approved"}]
+        chains = completeness.first_listed(lists, dec)
+        rows = [{"name": "New Name Co.", "aka": [], "parent": ""}, {"name": "Late Co", "aka": [], "parent": ""},
+                {"name": "Unknown Co", "aka": [], "parent": ""}]
+        heading = ("The Following Previously Listed Entities Did Not Meet the Requirements of Section 1260H "
+                   "Because They Do Not Operate Directly or Indirectly in the United States as Mandated by Section 1260H(a).")
+        removals = [
+            {"name": "Gone Co", "listed": "2021-06-03", "removed": "2025-01-07", "relisted": "",
+             "statements": [{"role": "notice_text", "scope": "group sentence", "over": 2, "quote": "should be removed"},
+                            {"role": "reason", "scope": "group heading", "over": 2, "quote": heading}],
+             "documents": [{"cite": "90 FR 1106", "url": "https://www.federalregister.gov/d/2025-00070"}], "note": ""},
+            {"name": "Quiet Co", "listed": "2024-01-31", "removed": "2024-12-18", "relisted": "",
+             "statements": [{"role": "notice_text", "scope": "group sentence", "over": 2, "quote": "delist"}],
+             "documents": [{"cite": "89 FR 102868", "url": "https://www.federalregister.gov/d/2024-30018"}], "note": ""},
+            {"name": "Dropped Co", "listed": "2025-01-07", "removed": "2026-06-10", "relisted": "", "statements": [],
+             "documents": [], "note": "Listed 2025. Not printed in 2026. No removal notice; no reason stated."}]
+        html = page.build({"label": "L"}, rows, [], [], {"listed": chains, "removals": removals})
+        self.assertIn("<th><button>Listed</button></th></tr>", html)
+        self.assertIn("<td>New Name Co.</td><td></td><td></td><td data-v=\"00000000\">source</td><td>2021-06-03</td>", html)   # through the rename
+        self.assertIn("<td>Late Co</td><td></td><td></td><td data-v=\"00000000\">source</td><td>2025-01-07</td>", html)
+        self.assertIn("<td>Unknown Co</td><td></td><td></td><td data-v=\"00000000\">source</td><td></td>", html)              # no date invented
+        self.assertIn("<td>Gone Co</td><td>2021-06-03</td><td>2025-01-07</td>"
+                      "<td>\u201c\u2026 Because They Do Not Operate Directly or Indirectly in the United States \u2026\u201d", html)
+        self.assertIn("stated ground \u00b7 group heading over 2 names", html)
+        self.assertIn("<b>No specific reason stated in 89 FR 102868.</b>", html)
+        self.assertIn("<b>No removal notice; no reason stated.</b><br><span class=\"note\">Listed 2025. Not printed in 2026.</span>", html)
+        self.assertIn("3 removed since 2021", html)
+        page.assert_offline(html)
+
+    def test_brief_keeps_short_quotes_whole_and_cuts_long_ones_verbatim(self):
+        self.assertEqual(page.brief([{"role": "reason", "scope": "entity note", "quote": "No apparent U.S. nexus"},
+                                     {"role": "reason", "scope": "group heading", "quote": "A long heading"}])["quote"],
+                         "No apparent U.S. nexus")
+        long = "word " * 40
+        cut = page.brief([{"role": "notice_text", "scope": "notice", "quote": long}])["quote"]
+        self.assertTrue(cut.endswith(" \u2026") and long.startswith(cut[:-2]))
+        self.assertIsNone(page.brief([]))
+
 
 if __name__ == "__main__":
     unittest.main()

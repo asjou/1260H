@@ -536,11 +536,26 @@ def cmd_review(port=8765, open_browser=True):
                         port=port, open_browser=open_browser)
 
 
+def _page_history(store):
+    """First-listed dates and every removal since 2021, when the data folder keeps the history
+    (the classroom example does not). A history that cannot be read leaves the page as it was,
+    and says so."""
+    if not historycheck.has_history(RULES, DATA):
+        return None
+    eq, as_of = replay.equivalents(DATA), store.get("currency_date", "")
+    try:
+        return {"listed": historycheck.first_listed(RULES, DATA, store["entities"], as_of, eq),
+                "removals": historycheck.removals(RULES, DATA, store["entities"], as_of, eq)}
+    except ListwatchError as e:
+        print(f"page: dates and removal history left out ({e})")
+        return None
+
+
 def _build_page():
     meta = _read("page-meta.json", {"label": "Section 1260H list"})
     store = _store()
     meta["as_of"] = store.get("currency_date", meta.get("as_of", ""))
-    html = page.build(meta, store["entities"], _register(), _approved_docs())
+    html = page.build(meta, store["entities"], _register(), _approved_docs(), _page_history(store))
     out = _page_path()
     out.parent.mkdir(exist_ok=True)
     out.write_text(html)
