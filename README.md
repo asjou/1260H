@@ -7,8 +7,10 @@ by separate Federal Register notices. For example, a notice published 10 Novembe
 removed WuXi AppTec "in compliance with" a preliminary injunction issued on 7 August 2026. The notice
 says the removal is "without prejudice to relisting the entity on additional or supplementary grounds".
 
-This repo keeps the net list. Every row links to the page of the official notice it came from, and
-removed companies stay visible, with the date, what the notice says, and the notice.
+This repo keeps the net list. Every row links to the page of the official notice it came from and
+shows when the company was first listed. Every company removed since the first list (June 2021)
+stays visible, with the dates it was listed and removed, the reason the documents give, and links
+to them.
 
 **The page:** <https://asjou.github.io/1260H/>
 
@@ -57,7 +59,7 @@ python3 run.py review    # the same, as a clickable page in your browser (this c
 python3 run.py spelling  # compare this year's names with earlier years' lists
 python3 run.py completeness  # check every company that left since 2021 has a document or a recorded decision
 python3 run.py removals  # every removal since 2021, quoting the documents
-python3 run.py page      # rebuild docs/index.html
+python3 run.py page      # rebuild docs/index.html (current list with first-listed dates, removals since 2021)
 python3 run.py check     # look for new notices (network)
 python3 run.py show      # what each open proposal would change
 python3 run.py approve ID
@@ -203,6 +205,13 @@ names or beside one name. A heading over ten names gives one ground for the grou
 give no facts for each company. Labels and the "No specific reason" marker are this repo's; notes
 marked "editor's note" are a person's, drawn from the documents cited. Leaving this list is not a
 finding about a company's status under any other list or restriction.
+
+The page shows the same history in two columns. **Listed** is the date the Department released the
+first list that prints the company, followed through approved renames; a company removed and listed
+again keeps its first date (`historycheck.first_listed`). **Removed** is the date of the Federal
+Register notice that removed it, or of the Department's PDF where no notice did. The reason column
+quotes the most specific statement word for word, cut with "…" when long; the full text is one
+click away. A company the history cannot date shows no date rather than a guess.
 
 ## The AI step
 
