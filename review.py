@@ -237,7 +237,7 @@ function card(d) {
   c.append($("h3", {text:"Compare"}));
   const links = $("div", {cls:"links"}, link(safe(f.fr), "Federal Register page ↗"),
                   link(safe(f.dow), "DoW PDF online ↗ (search for the name)"));
-  for (const p of f.pdfs) links.append(link("/pdf/" + encodeURIComponent(p), "Saved PDF " + p.replace(/\.pdf$/i, "")));
+  for (const p of f.pdfs) links.append(link("/pdf/" + encodeURIComponent(p), "Saved PDF " + p.replace(/\\.pdf$/i, "")));
   c.append(links);
   c.append($("h3", {text:"What earlier years printed"}), earlierList(f));
   const g = d.parsed && advice[d.parsed];

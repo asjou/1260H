@@ -2,7 +2,7 @@
   "schema": "listwatch/entities@1",
   "slug": "dow-1260h",
   "currency_date": "",
-  "note": "EXAMPLE for teaching. This draft reproduces a first parse of the DoW PDF that missed a company. Run `python3 run.py replay --data example/dow-1260h`, then `python3 run.py decide --data example/dow-1260h` to fix it.",
+  "note": "EXAMPLE for teaching. This draft reproduces a first parse whose list spells one company differently from the Federal Register notice. Run `python3 run.py replay --data example/dow-1260h`, then `python3 run.py review --data example/dow-1260h` to decide it.",
   "entities": [
     {
       "name": "360 Security Technology Inc.",
@@ -1202,6 +1202,15 @@
       "name": "NetPosa Technologies, Ltd.",
       "aka": [
         "NetPosa"
+      ],
+      "country": "China",
+      "category": "Chinese military company (Section 1260H)",
+      "parent": ""
+    },
+    {
+      "name": "NIO, Inc.",
+      "aka": [
+        "NIO"
       ],
       "country": "China",
       "category": "Chinese military company (Section 1260H)",

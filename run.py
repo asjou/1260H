@@ -282,7 +282,7 @@ def cmd_replay():
         for i, d in enumerate(rep.differences, 1):
             print(f"  {i}. {d.get('parsed') or d.get('store')}")
             print("\n".join(_evidence(d, earlier)))
-        print(f"\nThen record your decisions: python3 run.py decide{_flag()}")
+        print(f"\nThen decide each one on the review page: python3 run.py review{_flag()}")
     return 0 if rep.ok else 1
 
 
@@ -579,7 +579,7 @@ def _holds(prop, props):
     if prop["kind"] == "start":
         rep = replay.check(RULES, DATA, _all_docs(), _store()["entities"], require_key=False)
         if not rep.ok:
-            holds.append(f"the replay check fails: run `python3 run.py replay{_flag()}`, then `python3 run.py decide{_flag()}`")
+            holds.append(f"the replay check fails: run `python3 run.py replay{_flag()}`, then `python3 run.py review{_flag()}`")
     return c, holds
 
 

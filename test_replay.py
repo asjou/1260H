@@ -2,7 +2,8 @@
 
 - The saved notices still match their fingerprints (SHA-256).
 - Re-reading them reproduces the published list, and every row links to its page.
-- The classroom example fails until its two checks are decided, then passes; `decide` records them.
+- The classroom example fails until its one check (Addisino vs Addsino) is decided, then passes; `review` and
+  `decide` record it.
 - Earlier years' lists are saved, read, and flag "Addisino" against 2025's "Addsino", without AI.
 - The AI step stays off unless it is configured AND a person says yes, and code rejects a made-up name.
 """
@@ -84,23 +85,51 @@ class ClassroomExample(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_the_example_fails_on_exactly_the_two_differences(self):
+    def drop_nio(self):
+        """A second kind of difference, for the tests that need one: a company the notice prints and the
+        draft list lacks. (The example as shipped has only the spelling difference.)"""
+        f = self.data / "entities.json"
+        e = json.loads(f.read_text())
+        e["entities"] = [r for r in e["entities"] if r["name"] != "NIO, Inc."]
+        f.write_text(json.dumps(e))
+        f = self.data / "replay-exceptions.json"
+        exc = json.loads(f.read_text())
+        exc["differences"].append({"parsed": "NIO, Inc.", "store": None, "resolution": None, "note": ""})
+        f.write_text(json.dumps(exc))
+
+    def test_the_example_fails_on_exactly_the_one_spelling(self):
         with using(self.data):
             code, out = quiet(run.cmd_replay)
         self.assertEqual(code, 1)
         unresolved = [l for l in out.splitlines() if "UNRESOLVED" in l]
-        self.assertEqual(len(unresolved), 2, out)
-        self.assertTrue(any("NIO, Inc." in l and "#page=" in l for l in unresolved), out)
-        self.assertTrue(any("Addisino" in l and "Addsino" in l for l in unresolved), out)
+        self.assertEqual(len(unresolved), 1, out)
+        self.assertTrue("Addisino" in unresolved[0] and "Addsino" in unresolved[0], out)
 
-    def test_after_the_checks_it_passes_and_approval_adds_nio(self):
+    def test_a_missing_company_is_found_and_can_be_added(self):
+        self.drop_nio()
+        with using(self.data):
+            _code, out = quiet(run.cmd_replay)
+        self.assertTrue(any("UNRESOLVED" in l and "NIO, Inc." in l and "#page=" in l for l in out.splitlines()), out)
+        self.assertIn("no earlier list prints 'NIO, Inc.': new in this notice", out)
         f = self.data / "replay-exceptions.json"
         exc = json.loads(f.read_text())
         for d in exc["differences"]:
-            if d["parsed"] and d["parsed"].startswith("NIO"):
-                d.update(resolution="add", note="checked the PDF page")
+            if d["parsed"].startswith("NIO"):
+                d.update(resolution="add", note="91 FR 35193")
             else:
                 d.update(resolution="same entity", alias=False, note="Federal Register typo")
+        f.write_text(json.dumps(exc))
+        with using(self.data):
+            self.assertEqual(quiet(run.cmd_replay)[0], 0)
+            pid = next(p["id"] for p in run._proposals() if p["status"] == "open")
+            self.assertEqual(quiet(run.cmd_approve, pid)[0], 0)
+            self.assertIn("NIO, Inc.", {r["name"] for r in run._store()["entities"]})
+
+    def test_after_the_check_it_passes_and_approval_keeps_the_dow_spelling(self):
+        f = self.data / "replay-exceptions.json"
+        exc = json.loads(f.read_text())
+        for d in exc["differences"]:
+            d.update(resolution="same entity", alias=False, note="Federal Register typo")
         f.write_text(json.dumps(exc))
         with using(self.data):
             self.assertEqual(quiet(run.cmd_replay)[0], 0)
@@ -124,50 +153,49 @@ class ClassroomExample(unittest.TestCase):
             code, out = quiet(run.cmd_approve, pid)
         self.assertEqual(code, 2)
         self.assertIn("replay", out)
-        self.assertIn(f"decide --data {self.data}", out)      # the command to type names this folder
+        self.assertIn(f"review --data {self.data}", out)      # the command to type names this folder
 
     def test_replay_shows_what_to_compare(self):
         with using(self.data):
             _code, out = quiet(run.cmd_replay)
         self.assertIn("DoW list", out)
         self.assertIn("earlier lists print 'Addsino Co., Ltd.': 2025 (90 FR 1105)", out)
-        self.assertIn("no earlier list prints 'NIO, Inc.': new in this notice", out)
-        self.assertIn("run.py decide --data", out)
+        self.assertIn("run.py review --data", out)
 
     def answers(self, *a):
         it = iter(a)
         return lambda q: next(it)
 
-    def test_decide_records_both_answers_and_the_replay_passes(self):
-        ask = self.answers("y", "", "DoW PDF and 2025 list print Addsino.", "a", "Printed at 91 FR 35193.")
+    def test_decide_records_the_answer_and_the_replay_passes(self):
+        ask = self.answers("y", "", "DoW PDF and 2025 list print Addsino.")
         with using(self.data):
             code, out = quiet(run.cmd_decide, ask, False)
         self.assertEqual(code, 0, out)
         self.assertIn("replay: PASS", out)
         exc = {d["parsed"]: d for d in json.loads((self.data / "replay-exceptions.json").read_text())["differences"]}
         self.assertEqual((exc["Addisino Co., Ltd"]["resolution"], exc["Addisino Co., Ltd"]["alias"]), ("same entity", False))
-        self.assertEqual(exc["NIO, Inc."]["resolution"], "add")
-        self.assertEqual(exc["NIO, Inc."]["note"], "Printed at 91 FR 35193.")
+        self.assertEqual(exc["Addisino Co., Ltd"]["note"], "DoW PDF and 2025 list print Addsino.")
 
     def test_decide_shows_the_ai_guess_as_a_guess(self):
-        ask = self.answers("s", "s")
+        ask = self.answers("s")
         with using(self.data), mock.patch.object(run, "_second_opinion", return_value={1: ("typo", "one extra i")}):
             _code, out = quiet(run.cmd_decide, ask, True)
         self.assertIn("AI's guess (a guess, not a source; check it): typo. one extra i", out)
 
     def test_decide_asks_again_for_an_empty_reason(self):
-        ask = self.answers("y", "", "", "   ", "the DoW PDF prints Addsino", "s")
+        ask = self.answers("y", "", "", "   ", "the DoW PDF prints Addsino")
         with using(self.data):
             code, out = quiet(run.cmd_decide, ask, False)
-        self.assertEqual(code, 1)
+        self.assertEqual(code, 0, out)
         self.assertIn("A reason is needed", out)
+        self.assertIn("replay: PASS", out)
 
     def test_decide_no_or_skip_leaves_it_undecided(self):
         with using(self.data):
-            code, out = quiet(run.cmd_decide, self.answers("n", "s"), False)
+            code, out = quiet(run.cmd_decide, self.answers("n"), False)
         self.assertEqual(code, 1)
         self.assertIn("two different companies", out)
-        self.assertEqual(out.count("UNRESOLVED"), 2)
+        self.assertEqual(out.count("UNRESOLVED"), 1)
 
 
 class ReviewPage(unittest.TestCase):
@@ -214,7 +242,7 @@ class ReviewPage(unittest.TestCase):
         self.assertIn(self.srv.token.encode(), body)
         self.assertNotIn(b"__TOKEN__", body)
 
-    def test_state_lists_the_two_differences_with_what_to_compare(self):
+    def test_state_lists_the_difference_with_what_to_compare(self):
         s = json.loads(self.req("/state")[1])
         self.assertFalse(s["ok"])
         pair = next(d for d in s["differences"] if d["kind"] == "pair")
@@ -223,7 +251,7 @@ class ReviewPage(unittest.TestCase):
         self.assertTrue(pair["facts"]["dow"].startswith("https://media.defense.gov/"))
 
     def test_an_answer_without_the_code_or_from_another_host_is_refused(self):
-        body = {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "on the DoW PDF"}
+        body = {"parsed": "Addisino Co., Ltd", "store": "Addsino Co., Ltd.", "choice": "same entity", "why": "DoW PDF"}
         self.assertEqual(self.req("/decide", body)[0], 403)
         self.assertEqual(self.req("/decide", body, token="wrong")[0], 403)
         self.assertEqual(self.req("/decide", body, token=self.srv.token, host="evil.example:80")[0], 403)
@@ -232,16 +260,16 @@ class ReviewPage(unittest.TestCase):
 
     def test_same_rules_as_decide_a_reason_and_a_fitting_choice(self):
         t = self.srv.token
-        self.assertEqual(self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "  "}, t)[0], 400)
-        self.assertEqual(self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "keep", "why": "x"}, t)[0], 400)
+        pair = {"parsed": "Addisino Co., Ltd", "store": "Addsino Co., Ltd."}
+        self.assertEqual(self.req("/decide", {**pair, "choice": "same entity", "why": "  "}, t)[0], 400)
+        self.assertEqual(self.req("/decide", {**pair, "choice": "add", "why": "x"}, t)[0], 400)
         self.assertEqual(self.req("/decide", {"parsed": "Invented Ltd.", "store": None, "choice": "add", "why": "x"}, t)[0], 400)
 
-    def test_two_answers_and_the_replay_passes(self):
+    def test_one_answer_and_the_replay_passes(self):
         t = self.srv.token
-        code, _ = self.req("/decide", {"parsed": "Addisino Co., Ltd", "store": "Addsino Co., Ltd.",
-                                       "choice": "same entity", "typo": True, "why": "DoW PDF prints Addsino"}, t)
+        code, body = self.req("/decide", {"parsed": "Addisino Co., Ltd", "store": "Addsino Co., Ltd.",
+                                          "choice": "same entity", "typo": True, "why": "DoW PDF prints Addsino"}, t)
         self.assertEqual(code, 200)
-        code, body = self.req("/decide", {"parsed": "NIO, Inc.", "store": None, "choice": "add", "why": "91 FR 35193"}, t)
         self.assertTrue(json.loads(body)["ok"])
         exc = {d["parsed"]: d for d in json.loads((self.data / "replay-exceptions.json").read_text())["differences"]}
         self.assertEqual((exc["Addisino Co., Ltd"]["resolution"], exc["Addisino Co., Ltd"]["alias"]), ("same entity", False))
