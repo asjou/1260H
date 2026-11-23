@@ -1,15 +1,9 @@
 {
-  "note": "EXAMPLE. Each place the notices and the draft list differ. Run `python3 run.py decide --data example/dow-1260h`: it shows what to compare and records your answer here. (You can also edit this file: resolution \"add\", \"same entity\" with \"alias\": false to keep the notice's spelling off the page, or \"keep\", and why in \"note\".) An undecided entry fails the replay.",
+  "note": "EXAMPLE. Each place the notices and the draft list differ. Run `python3 run.py review --data example/dow-1260h`: it opens a page on this computer that shows what to compare and records your answer here. An undecided entry fails the replay.",
   "differences": [
     {
       "parsed": "Addisino Co., Ltd",
       "store": "Addsino Co., Ltd.",
-      "resolution": null,
-      "note": ""
-    },
-    {
-      "parsed": "NIO, Inc.",
-      "store": null,
       "resolution": null,
       "note": ""
     }

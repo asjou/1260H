@@ -54,8 +54,7 @@ Python 3.10 or later (`python3`), standard library only. Nothing to install. No 
 ```
 python3 -m unittest      # the proof: all tests, offline
 python3 run.py replay    # re-read the saved notices and compare with the list
-python3 run.py decide    # answer a question for each difference the replay found
-python3 run.py review    # the same, as a clickable page in your browser (this computer only)
+python3 run.py review    # decide each difference the replay found, on a page in your browser (this computer only)
 python3 run.py spelling  # compare this year's names with earlier years' lists
 python3 run.py completeness  # check every company that left since 2021 has a document or a recorded decision
 python3 run.py removals  # every removal since 2021, quoting the documents
@@ -65,64 +64,62 @@ python3 run.py show      # what each open proposal would change
 python3 run.py approve ID
 ```
 
-## The classroom example: find and fix two mistakes
+## The classroom example: a practice copy with one mistake
 
-`example/dow-1260h/` holds the list as a first parse of the DoW PDF left it. It is an example for
-teaching, and it repeats two real problems:
+`example/dow-1260h/` is a **practice copy** of the list, for teaching. Nothing you do there touches
+the live list or the published page. It repeats one real problem: the two official copies of the
+2026 list spell one company differently.
 
-- the parse **missed NIO, Inc.**, which the 2026 list prints at 91 FR 35193;
-- the Federal Register prints **"Addisino Co., Ltd"** (91 FR 35190), but the DoW list prints
-  **"Addsino Co., Ltd."**. We treat the Federal Register spelling as a misprint and keep the DoW
-  spelling. Check both yourself: the replay links the Federal Register page, and the DoW PDF is
-  [here](https://media.defense.gov/2026/Jun/08/2003945537/-1/-1/1/ENTITIES-IDENTIFIED-AS-CHINESE-MILITARY-COMPANIES-OPERATING-IN-THE-UNITED-STATES-IN-ACCORDANCE-WITH-SECTION-1260H.PDF) (open it in a browser; the site blocks scripts). Then search the web for
-  "Addisino": the misprint has been copied into other published lists.
+- The **Federal Register** notice prints **"Addisino Co., Ltd"** (91 FR 35190).
+- The **DoW list** (the Department's own PDF) prints **"Addsino Co., Ltd."**, and so did the 2025
+  list. No earlier list ever printed "Addisino".
 
-**Step 1. Let the tool find them.** You don't hunt for typos; the replay does:
+Read against the earlier years, it is one company, Addsino, with a misprint in the Federal Register
+copy, not a different company. The practice copy keeps the DoW spelling, and you record why. Check
+it yourself: the replay links the Federal Register page, and the DoW PDF is
+[here](https://media.defense.gov/2026/Jun/08/2003945537/-1/-1/1/ENTITIES-IDENTIFIED-AS-CHINESE-MILITARY-COMPANIES-OPERATING-IN-THE-UNITED-STATES-IN-ACCORDANCE-WITH-SECTION-1260H.PDF)
+(open it in a browser; the site blocks scripts). Then search the web for "Addisino": the misprint
+has been copied into other published lists.
+
+**Step 1. Let the tool find it.** You don't hunt for typos; the replay does:
 
 ```
 python3 run.py replay --data example/dow-1260h
 ```
 
-It fails with two differences and, under each one, what to compare: the Federal Register page,
-the DoW PDF, and what earlier years' lists printed. For Addisino it shows that the 2025 list
-printed "Addsino" and no earlier list ever printed "Addisino".
+It fails with one difference and shows what to compare: the Federal Register page, the DoW PDF,
+and what earlier years' lists printed (2025 printed "Addsino"; no earlier list printed "Addisino").
 
-**Step 2. Judge each one, and answer.** Open the links, compare, then:
-
-```
-python3 run.py decide --data example/dow-1260h
-```
-
-It asks one question at a time, in plain words, and records your answer and your reason:
+**Step 2. Decide it on the review page.**
 
 ```
-1. Two spellings. The Federal Register notice prints 'Addisino Co., Ltd'; the list has 'Addsino Co., Ltd.'.
-      Federal Register: https://www.govinfo.gov/...2026-11571.pdf#page=2
-      DoW list (open in a browser, search for the name): https://media.defense.gov/...
-      earlier lists print 'Addsino Co., Ltd.': 2025 (90 FR 1105)
-      no earlier list prints 'Addisino Co., Ltd'; close: 2025 printed 'Addsino Co., Ltd.'
-    Same company, spelled two ways? [y]es / [n]o / [s]kip > y
-    Is the notice's spelling 'Addisino Co., Ltd' a mistake (keep it off the page)? [Y/n] > y
-    Why? One line: what the sources show. > The DoW PDF and the 2025 list print Addsino.
+python3 run.py review --data example/dow-1260h
 ```
 
-**Prefer clicking?** `python3 run.py review --data example/dow-1260h` opens the same questions as a
-page in your browser: one card per difference, with the links, the saved PDFs, what earlier years
-printed, buttons for your answer and a box for your reason. It saves through the same rules as
-`decide`. The page runs on your own computer only (`http://127.0.0.1:8765`); press Ctrl+C in the
-terminal to stop it. In GitHub Codespaces, open the forwarded port it offers.
+Your browser opens a page on your own computer (`http://127.0.0.1:8765`): one card for the
+difference, with the Federal Register link, the saved DoW PDFs and what earlier years printed.
+Click **"Same company, spelled two ways"**, leave **"'Addisino Co., Ltd' is a typo: keep it off the
+page"** ticked, write your reason (for example "The DoW PDF and the 2025 list print Addsino.") and
+click **Save decision**. Press Ctrl+C in the terminal to stop the page. In GitHub Codespaces, open
+the forwarded port it offers.
 
-When every difference is decided, the replay passes. Your answers are saved in
+The replay now passes. Your decision and your reason are saved in
 `example/dow-1260h/replay-exceptions.json`: the record of what a person decided and why.
 
-**Step 3. Approve and publish (the example only).**
+**Step 3. Approve and build the practice page.**
 
 ```
 python3 run.py show --data example/dow-1260h
 python3 run.py approve <id> --data example/dow-1260h
-python3 run.py page --data example/dow-1260h        # writes example/index.html
-git checkout example/                              # reset the example to try again
+python3 run.py page --data example/dow-1260h        # writes example/index.html, on your computer only
+git checkout example/                              # reset the practice copy to try again
 ```
+
+Open `example/index.html`: Addsino is on the page and Addisino is not. This is a practice page; it
+is not published anywhere. **On the live list, a change works differently:** the nightly GitHub
+job finds the notice and opens a pull request showing what would change, each row with its source
+link. You check it, and merging the pull request is what publishes the page at
+<https://asjou.github.io/1260H/>. Closing it rejects the change.
 
 ## How to judge a difference
 
@@ -131,7 +128,7 @@ The tool finds a difference; a person decides it. Ask, in this order:
 1. **What does the issuing agency's own document say?** The DoW PDF is DoW's list. The Federal
    Register copy is a reprint, typed again, and reprints carry typos. When the two disagree on a
    letter, the DoW PDF wins unless something shows otherwise.
-2. **What did earlier years print?** `replay` and `decide` show it. A spelling that every earlier
+2. **What did earlier years print?** `replay` and the review page show it. A spelling that every earlier
    list printed, and that only this year's reprint changes, is very likely a typo.
 3. **Is it a rename?** Companies change names. The notices sometimes say so ("formerly ..."). A
    different word, not a different letter, points to a rename, or to a different company. Check
@@ -161,7 +158,7 @@ Mengsheng Electronic" (2025: "Chengdu M&S Electronics") and "China Communication
 were saved by hand from a browser, as `dow-<date on the web address>.pdf`. When saved, each had the
 same SHA-256 as the Wayback Machine capture of its official address; download the capture to check.
 Beside each is its text, made once with `pdftotext -layout`, and a record with the official address,
-the Wayback capture's address, and the SHA-256 of the PDF and of its text. `replay` and `decide` list
+the Wayback capture's address, and the SHA-256 of the PDF and of its text. `replay` and the review page list
 the PDFs next to each difference. The scripts use the PDFs' saved text (after checking both
 fingerprints) for two things only: the 2022 list, and the removal sections. The 2022 PDF is a scan;
 its text has scanner slips ("Chioa" for "China", "Dn" for "DJI"), corrected openly in
@@ -229,7 +226,7 @@ If you say yes, the model proposes the names. Code then rejects any name that is
 for word in the notice, and any removal of a company not on the list. You still approve the result.
 The daily GitHub job never calls a model, because no one is there to say yes.
 
-**A second opinion on spellings.** `decide` can also ask a model, once, for its guess on all the
+**A second opinion on spellings.** The review page can also ask a model, once, when you click its button, for its guess on all the
 spelling pairs together ("typo", "rename", "different companies" or "unsure", with one sentence
 why). It asks you first, sends only the names and what earlier lists printed, and labels the answer
 as a guess. You still decide, and you still write the reason.
