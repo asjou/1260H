@@ -15,7 +15,7 @@ only; nothing to install.
     python3 run.py approve ID   apply one proposal, after you have checked it against its source links
     python3 run.py stale        exit 1 if the Federal Register has a 1260H notice not handled here
     python3 run.py read FILE    try the rules on a notice saved as a text file; offer the AI step if they fail
-    python3 run.py prepare      (used by the weekly GitHub job) apply proposals with no holds; print a summary
+    python3 run.py prepare      (used by the daily GitHub job) apply proposals with no holds; print a summary
 
 Add --data example/dow-1260h to any command to work on the classroom example instead of the live list.
 
@@ -671,9 +671,9 @@ def cmd_read(path):
 
 
 def cmd_prepare():
-    """For the weekly GitHub job: apply each open proposal that has no holds (oldest first), rebuild
+    """For the daily GitHub job: apply each open proposal that has no holds (oldest first), rebuild
     the page, and print a summary for the pull request. Merging the pull request is the approval."""
-    out = ["The weekly check found a new Section 1260H notice in the Federal Register.", ""]
+    out = ["The daily check found a new Section 1260H notice in the Federal Register.", ""]
     held = False
     for p in sorted(_proposals(), key=lambda p: p["publication_date"]):
         if p["status"] != "open":

@@ -112,7 +112,7 @@ class ClassroomExample(unittest.TestCase):
             self.assertNotIn("Addisino Co., Ltd", names)
             self.assertTrue(run._register())                  # the removals are recorded
 
-    def test_the_weekly_job_is_told_to_hold_while_a_check_is_undecided(self):
+    def test_the_daily_job_is_told_to_hold_while_a_check_is_undecided(self):
         with using(self.data), mock.patch.object(run, "_page_path", return_value=Path(self.tmp.name) / "p.html"):
             code, out = quiet(run.cmd_prepare)
         self.assertEqual(code, 10)
