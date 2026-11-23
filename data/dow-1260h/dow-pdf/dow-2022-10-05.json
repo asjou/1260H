@@ -1,0 +1,14 @@
+{
+  "schema": "listwatch/pdf-source@1",
+  "document": "dow-2022-10-05",
+  "title": "1260H Companies",
+  "release_date": "2022-10-05",
+  "official_url": "https://media.defense.gov/2022/Oct/05/2003091659/-1/-1/0/1260H%20COMPANIES.PDF",
+  "sha256": "a9626f3d9f55d36b9ba8eb213ff802e1e1d582b31b2d06e53672ff6e08182157",
+  "bytes": 71537,
+  "text_sha256": "c13c52accdd375e470c8afbb572f4489e947e06b3d2574cccc9ff8919dc84aeb",
+  "extractor": "pdftotext version 26.01.0 -layout -enc UTF-8",
+  "saved_at": "2026-11-22T21:08:07+00:00",
+  "archived_url": "https://web.archive.org/web/20221005182056/https://media.defense.gov/2022/Oct/05/2003091659/-1/-1/0/1260H%20COMPANIES.PDF",
+  "archived_at": "2022-10-05T18:20:56Z"
+}

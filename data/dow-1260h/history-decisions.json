@@ -1,0 +1,170 @@
+{
+  "schema": "listwatch/history-decisions@2",
+  "note": "Decisions for companies that left the § 1260H list with no document removing them. Each cites quotes that `python3 run.py completeness` checks word for word against the saved documents, and has a basis: \"document\" (a government document states it), \"placement\" (inferred from where the lists print the names) or \"editor\" (a person's judgment). A decision counts only once its status is \"approved\". Kinds: rename (the list states it), different_name (printed under another name, same parent, no removal notice), alias (folded into a parent entry), listed_elsewhere (still listed though the list of names omits it), no_notice (no longer printed, with no removal notice).",
+  "decisions": [
+    {
+      "id": "cnooc-limited-alias",
+      "kind": "alias",
+      "transition": "2024→2025",
+      "name": "CNOOC Limited",
+      "to": "China National Offshore Oil Corporation",
+      "basis": "editor",
+      "reader_note": "Printed on the 2021 and 2024 lists. Not printed on the 2025 or 2026 list, and no notice removes it. The parent, China National Offshore Oil Corporation (CNOOC), remains listed. Shown under the parent by the editor's decision; the lists do not state that the parent's listing covers it.",
+      "evidence": [
+        {
+          "source_doc": "2024-06895",
+          "quote": "CNOOC Limited"
+        },
+        {
+          "source_doc": "2025-00070",
+          "quote": "China National Offshore Oil Corporation (CNOOC)"
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "hesai-2025-footnote",
+      "kind": "listed_elsewhere",
+      "transition": "2024→2025",
+      "name": "Hesai Technology Co., Ltd.",
+      "basis": "document",
+      "reader_note": "Removed and designated again by notices published October 29, 2024 (89 FR 86230), which reprint, in the correct order, notices first published October 23, 2024 (89 FR 84555; 89 FR 84547, designation at 84548). The January 2025 list does not print Hesai among its names; its footnote 1 states that Hesai \"remains a Chinese military company\". The 2026 list prints \"Hesai Group (also known as Hesai Technology Co., Ltd.)\".",
+      "evidence": [
+        {
+          "source_doc": "2024-25167",
+          "quote": "to publicly reflect that Hesai Technology Co., Ltd. (Hesai), the designated company, was removed from the Chinese Military Companies list on the basis of the original listing record and then added to the list on a new record based on the latest information available."
+        },
+        {
+          "source_doc": "2024-25168",
+          "quote": "The Deputy Secretary of Defense has decided to delist the following entity from the list of ``Chinese military companies'' in accordance with section 1260H, without prejudice to relisting the entity on additional or supplementary grounds:"
+        },
+        {
+          "source_doc": "2024-25169",
+          "quote": "The Deputy Secretary of Defense has determined that the following entity qualifies as a ``Chinese military company'' in accordance with section 1260H:"
+        },
+        {
+          "source_doc": "2025-00070",
+          "quote": "Hesai Technology Co., Ltd. was previously identified as and remains a Chinese military company operating in the United States"
+        },
+        {
+          "source_doc": "2026-11571",
+          "quote": "Hesai Group (also known as Hesai Technology Co., Ltd.)"
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "smic-nicm-different-name",
+      "kind": "different_name",
+      "transition": "2024→2025",
+      "name": "SMIC Northern Integrated Circuit Manufacturing (Beijing) Co., Ltd",
+      "to": "Semiconductor Manufacturing North China (Beijing) Corporation",
+      "basis": "placement",
+      "reader_note": "The 2024 list prints \"SMIC Northern Integrated Circuit Manufacturing (Beijing) Co., Ltd (SMIC NICM)\"; the 2025 list prints \"Semiconductor Manufacturing North China (Beijing) Corporation\" among SMIC's entries and not the earlier name. No notice removes either. The lists do not state that these are the same company.",
+      "evidence": [
+        {
+          "source_doc": "2024-06895",
+          "quote": "SMIC Northern Integrated Circuit Manufacturing (Beijing) Co., Ltd (SMIC NICM)"
+        },
+        {
+          "source_doc": "2025-00070",
+          "quote": "Semiconductor Manufacturing North China (Beijing) Corporation"
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "westone-rename",
+      "kind": "rename",
+      "transition": "2025→2026",
+      "name": "Cheng Du Westone Information Industry Co., Ltd.",
+      "to": "CETC Cyberspace Security Technology Co., Ltd.",
+      "basis": "document",
+      "reader_note": "The 2026 list prints \"CETC Cyberspace Security Technology Co., Ltd. (formerly Chen Du Westone Information Industry Co., Ltd.)\" [spelling as printed]; the 2025 list printed \"Cheng Du Westone Information Industry Co., Ltd.\" under CETC.",
+      "evidence": [
+        {
+          "source_doc": "2025-00070",
+          "quote": "Cheng Du Westone Information Industry Co., Ltd."
+        },
+        {
+          "source_doc": "2026-11571",
+          "quote": "CETC Cyberspace Security Technology Co., Ltd. (formerly Chen Du Westone Information Industry Co., Ltd.)"
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "wenchong-no-notice",
+      "kind": "no_notice",
+      "transition": "2025→2026",
+      "name": "Guangzhou Wenchong Shipyard Co., Ltd.",
+      "basis": "editor",
+      "reader_note": "Guangzhou Wenchong Shipyard Co., Ltd. — listed 2025 (90 FR 1106, under COMEC). Not printed in the 2026 list (91 FR 35192). No removal notice; no reason stated.",
+      "evidence": [
+        {
+          "source_doc": "2025-00070",
+          "quote": "Guangzhou Wenchong Shipyard Co., Ltd."
+        },
+        {
+          "source_doc": "2026-11571",
+          "quote": "COMEC subsidiaries: Guangzhou Wenchuan Heavy Industry Co., Ltd., and Huacheng (Tianjin) Ship Leasing Co., Ltd.)"
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "ccc-usa-different-name",
+      "kind": "different_name",
+      "transition": "2025→2026",
+      "name": "China Communications Constructions USA, Inc.",
+      "to": "China Communications Construction (USA) Co., Ltd.",
+      "basis": "placement",
+      "reader_note": "The 2025 list prints \"China Communications Constructions USA, Inc.\" under CCCG; the 2026 list prints \"China Communications Construction (USA) Co., Ltd.\" under CCCG. The 2026 list's removals name China Traffic Construction USA, Inc., not this company. The lists do not state a name change.",
+      "evidence": [
+        {
+          "source_doc": "2025-00070",
+          "quote": "China Communications Constructions USA, Inc."
+        },
+        {
+          "source_doc": "2026-11571",
+          "quote": "China Communications Construction (USA) Co., Ltd."
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    },
+    {
+      "id": "unicom-group-bvi-different-name",
+      "kind": "different_name",
+      "transition": "2025→2026",
+      "name": "China Unicom Group (BVI) Co., Ltd.",
+      "to": "China Unicom Group Corporation (BVI) Co., Ltd.",
+      "basis": "placement",
+      "reader_note": "Printed as \"China Unicom Group (BVI) Co., Ltd.\" in 2025 and \"China Unicom Group Corporation (BVI) Co., Ltd.\" in 2026, in the same position among China Unicom's entries.",
+      "evidence": [
+        {
+          "source_doc": "2025-00070",
+          "quote": "China Unicom Group (BVI) Co., Ltd."
+        },
+        {
+          "source_doc": "2026-11571",
+          "quote": "China Unicom Group Corporation (BVI) Co., Ltd."
+        }
+      ],
+      "status": "approved",
+      "decided_by": "editor",
+      "decided_at": "2026-11-22"
+    }
+  ]
+}

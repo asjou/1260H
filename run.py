@@ -6,6 +6,9 @@ only; nothing to install.
     python3 run.py review       the same, as a clickable page in your browser (this computer only)
     python3 run.py spelling     compare the newest list's names with earlier years' lists (no network)
     python3 run.py history add DOC   save an earlier annual list from the Federal Register, for spelling
+    python3 run.py completeness check that every company that left the list since 2021 has a document
+                                or a recorded decision (no network)
+    python3 run.py removals     every removal since 2021, quoting the documents (no network)
     python3 run.py page         rebuild the web page from the list (no network)
     python3 run.py check        ask the Federal Register for new 1260H notices; save them; write proposals
     python3 run.py show         list open proposals and what each would change
@@ -29,6 +32,7 @@ import urllib.request
 from pathlib import Path
 
 from listwatch import LayoutError, ListwatchError, detect, history, page, proposal as P, replay, sources
+from listwatch import completeness, historycheck
 from listwatch.names import key as _key
 from listwatch.fetch import _OPENER as _NO_REDIRECT, fetch
 from listwatch.lists import dow_1260h as RULES
@@ -300,6 +304,82 @@ def cmd_spelling():
     print(f"{len(hits)} name(s) to look at. Each could be a typo, a rename or a different company: check the DoW PDF."
           if hits else "no new spellings close to earlier ones")
     return 0
+
+
+DISCLAIMER = ("Not legal advice and not an official source. The Federal Register notices and the Department's "
+              "own lists control; check each citation before you rely on it. Leaving this list is not a finding "
+              "about a company's status under any other list or restriction.")
+
+
+def _as_of():
+    store = _store()
+    return store, store.get("currency_date", "")
+
+
+def cmd_completeness():
+    """Walk every list since 2021: each company that left must have a document that removes it, or
+    an approved decision in history-decisions.json. This shows that every departure is accounted for;
+    it does not show that a decision is right, or that the saved files match the live government
+    copies. Fixed rules, no AI, no network."""
+    store, as_of = _as_of()
+    try:
+        rep = historycheck.report(RULES, LIVE, store["entities"], as_of, replay.equivalents(LIVE))
+    except ListwatchError as e:
+        print(f"cannot run the check: {e}")
+        return 2
+    print(f"Section 1260H list history, 2021 to the list as of {as_of}\n")
+    print("\n".join(rep.lines()))
+    print(f"\n{DISCLAIMER}")
+    return 0 if rep.ok else 1
+
+
+def cmd_removals():
+    """Every removal since 2021, with what the documents say, quoted word for word. Labels such as
+    "notice text" and the "No specific reason stated" marker are this repo's; notes marked
+    "editor's note" are a person's, drawn from the documents cited."""
+    store, as_of = _as_of()
+    try:
+        lists, statements = historycheck.inputs(RULES, LIVE, store["entities"], as_of)
+    except ListwatchError as e:
+        print(f"cannot read the history: {e}")
+        return 2
+    decisions = historycheck.read_decisions(LIVE)
+    rep = completeness.check(lists, statements, decisions, replay.equivalents(LIVE))
+    snaps = {x["id"]: x for x in lists}
+    notes = {d["name"]: d for d in decisions}
+    print(f"Section 1260H removals, 2021 to the list as of {as_of}")
+    print("Quotes are copied from the saved documents (line breaks joined). A group heading gives one ground "
+          "for the names under it; the documents give no facts for each company.")
+    shown = ("removed", "not printed, no notice", "listed elsewhere")
+    for it in rep.items:
+        if it["outcome"] not in shown:
+            continue
+        a, b = it["transition"].split("→")
+        row = next(r for r in snaps[a]["names"] if r["name"] == it["name"])
+        mine = [s for s in statements if snaps[a]["date"] < s["published"] <= snaps[b]["date"]
+                and completeness.keys(s) & completeness.keys(row)]
+        print(f"\n{it['name']}  ({it['outcome']}, {it['transition']})")
+        for s in mine:
+            when = (f"PDF posted {s['published']} (date in its web address)" if s["source_kind"] == "dow_pdf"
+                    else f"published {s['published']}" + (f", signed {s['dated']}" if s.get("dated") else ""))
+            print(f"  {s['event']:8} {s['cite']}  ({when})")
+            for x in s["statements"]:
+                role = "stated ground" if x["role"] == "reason" else "notice text"
+                where = x["scope"] + (f" over {x['over']} names" if x["over"] > 1 else "")
+                print(f"      {role} ({where}): \"{x['quote']}\"")
+        removals = [s for s in mine if s["event"] == "removal"]
+        if not any(x["role"] == "reason" for s in removals for x in s["statements"]):
+            cites = sorted({s["cite"] for s in removals})
+            print("  No specific reason stated in " + ", ".join(cites) + "." if cites
+                  else "  No removal notice; no reason stated.")
+        if it["name"] in notes and notes[it["name"]].get("reader_note"):
+            print(f"  editor's note: {notes[it['name']]['reader_note']}")
+    n_rm = sum(1 for i in rep.items if i["outcome"] == "removed")
+    n_np = sum(1 for i in rep.items if i["outcome"] == "not printed, no notice")
+    print(f"\n{n_rm} removed by a document and not re-listed; {n_np} no longer printed, with no notice; "
+          + ("every departure accounted for" if rep.ok else "the check FAILS: run `python3 run.py completeness`"))
+    print(f"\n{DISCLAIMER}")
+    return 0 if rep.ok else 1
 
 
 def cmd_history_add(doc):
@@ -616,7 +696,7 @@ def main(argv):
         argv = argv[:i] + argv[i + 2:]
     cmds = {"replay": cmd_replay, "page": cmd_page, "check": cmd_check, "show": cmd_show,
             "stale": cmd_stale, "prepare": cmd_prepare, "decide": cmd_decide, "spelling": cmd_spelling,
-            "review": cmd_review}
+            "review": cmd_review, "completeness": cmd_completeness, "removals": cmd_removals}
     if len(argv) == 3 and argv[:2] == ["history", "add"]:
         return cmd_history_add(argv[2])
     if len(argv) == 2 and argv[0] == "approve":

@@ -43,6 +43,26 @@ ERRATA = {
     },
 }
 
+# Scan slips in a DoW PDF's text layer (the PDF is a scan; pdftotext reads what the scanner
+# recognised). Plain string replacements, keyed by the saved PDF's document name, applied before the
+# names are read. Each one is a misreading of the image, not the Department's spelling: the 2021
+# Federal Register list prints every Tranche 1 name correctly, and the 2026 list the Tranche 2 ones.
+# A spelling the Department itself printed (e.g. "Kownsec") is not corrected here.
+SCAN_ERRATA = {
+    "dow-2022-10-05": [
+        ("ChioaElectronics Corporation (CBC)", "China Electronics Corporation (CEC)"),
+        ("ChioaRailway", "China Railway"),
+        ("Chioa ", "China "),
+        ("(Chioa Unicom)", "(China Unicom)"),
+        ("Shenzhen Dn Innovation Technology Co., Ltd. (Dll)", "Shenzhen DJI Innovation Technology Co., Ltd. (DJI)"),
+        ("Zhejiang Dahna Technology Co., Ltd. (Dahna)", "Zhejiang Dahua Technology Co., Ltd. (Dahua)"),
+        ("Huawei Inves1ment", "Huawei Investment"),
+        ("A VIC", "AVIC"),
+        ("Aerospace CHUAV", "Aerospace CH UAV"),
+    ],
+}
+_TRANCHE = re.compile(r"^\s*Tranche\s*\d", re.I)
+
 _UNRELATED = re.compile(r"Defense Federal Acquisition Regulation Supplement|\bDFARS\b", re.I)
 
 _ANNUAL_LEAD = re.compile(r"the\s+following\s+entities\s+qualify\s+for\s+designation\s+as[\s\S]{0,600}?section\s+1260H:\s*\n", re.I)
@@ -358,7 +378,7 @@ def earlier_names(text: str, doc: dict) -> list[dict]:
                 lines.append(cur)
                 cur = ""
             continue
-        if cur and _wraps(cur):
+        if cur and (_wraps(cur) or line.strip().startswith("(")):     # "... Co., Ltd" / "(SMIC NICM)"
             cur = cur + line.strip() if cur.endswith("-") else f"{cur} {line.strip()}"
             continue
         if _OLD_END.match(line):
@@ -378,3 +398,235 @@ def earlier_names(text: str, doc: dict) -> list[dict]:
     if len(out) < 5:
         raise LayoutError(f"{doc.get('document_number', 'notice')}: list too short ({len(out)} names)")
     return out
+
+
+def pdf_roster(pages: list[str], doc: str) -> list[dict]:
+    """Every company a DoW list PDF in the one-name-per-line layout prints (the October 2022 list,
+    which was never published in the Federal Register), as {"name", "aka", "tranche", "page"}.
+    Scan slips are corrected from SCAN_ERRATA first. Any other layout raises LayoutError."""
+    fixes = SCAN_ERRATA.get(doc, [])
+    out, tranche, seen_heading = [], "", False
+    for page_no, page in enumerate(pages, start=1):
+        for a, b in fixes:
+            page = page.replace(a, b)
+        for line in page.split("\n"):
+            s = line.strip()
+            if not s:
+                continue
+            if _TRANCHE.match(s):
+                tranche, seen_heading = re.sub(r"\s*\(.*$", "", re.sub(r"Tranche\s*", "Tranche ", s)), True
+                continue
+            if not seen_heading:
+                continue                                # the title block above the first heading
+            name, aka = parse_entry(s)
+            if len(name) > 120 or not re.search(r"[A-Za-z]", name):
+                raise LayoutError(f"{doc}: not a company name: {name[:80]!r}")
+            out.append({"name": name, "aka": aka, "tranche": tranche, "page": page_no})
+    if not seen_heading:
+        raise LayoutError(f"{doc}: no 'Tranche' heading; not the one-name-per-line layout")
+    if len(out) < 5:
+        raise LayoutError(f"{doc}: list too short ({len(out)} names)")
+    return out
+
+
+# ---- removal statements: what each document says about a removal ----
+#
+# Every quote is copied from the saved text, never written here. Line breaks are joined (a line that
+# ends in a hyphen joins without a space: "116-" + "283" -> "116-283"); nothing else changes. Each
+# statement says what it is:
+#   role   "reason"       the document says why (a DoW PDF heading or note; a notice's explanation)
+#          "notice_text"  the document only says that it removes; quoted, but it is not a reason
+#   scope  "group heading" / "group sentence"  printed once over several names (over = how many)
+#          "entity note"   printed beside one name
+#          "notice"        a notice's explanation, for the names that notice lists
+
+_DATED = re.compile(r"Dated:\s*([A-Z][a-z]+)\.?\s+(\d{1,2}),\s+(\d{4})")
+_MONTHS = {m: i for i, m in enumerate(["January", "February", "March", "April", "May", "June", "July",
+                                       "August", "September", "October", "November", "December"], 1)}
+# The 2025 notice puts its "Reconsideration Process" heading flush left, so the end of a removal
+# section is any of these lines, indented or not.
+_HISTORY_REMOVALS_END = re.compile(r"\n\s*(The list of entities|Reconsideration|Dated:)", re.I)
+_PDF_HEADING = re.compile(r"^\s*The Following\b.*\bDid Not Meet\b", re.I)
+_PDF_HEADING_END = re.compile(r"(\(Public Law 116-283\)|Section 1260H\(a\)\.|note\)\.)\s*$")
+_PDF_NOTE = re.compile(r"\s+Note:\s+(.+?)\s*$")
+
+
+def _join(text: str) -> str:
+    """Join wrapped lines the way a reader would; drop Federal Register page markers."""
+    text = _INLINE_MARKER.sub(" ", text)
+    text = re.sub(r"(?<=\w-)\n\s*", "", text)
+    return squash(text)
+
+
+def _verbatim(quote: str, text: str, what: str) -> str:
+    if not quote or quote not in _join(text):
+        raise LayoutError(f"{what}: quote not found word for word in the saved text: {quote[:80]!r}")
+    return quote
+
+
+def dated(text: str) -> str:
+    """The notice's signing date ("Dated: December 13, 2024.") as YYYY-MM-DD, or ""."""
+    m = _DATED.search(text)
+    return f"{m.group(3)}-{_MONTHS[m.group(1)]:02d}-{int(m.group(2)):02d}" if m and m.group(1) in _MONTHS else ""
+
+
+def _lead_sentence(text: str, m: re.Match) -> str:
+    """The whole paragraph that holds a lead match, from its four-space indent to the colon."""
+    start = text.rfind("\n    ", 0, m.start())
+    return _join(text[start + 1 if start >= 0 else 0: m.end()]).rstrip()
+
+
+def _fr_cite(doc: dict, page: int) -> str:
+    return f"{_volume(doc)} FR {page}"
+
+
+def _match_prior(names_text: str, prior: list[dict], what: str) -> list[dict]:
+    """Names in a comma-run line ("IDG Capital Partners Co., Ltd., Advanced Micro-Fabrication
+    Equipment Inc. China.") found by the earlier list's own names, longest first. Leftover text fails;
+    a short name in parentheses after a name, "(WuXi AppTec)", is not leftover."""
+    left = key(re.sub(r"\([^)]*\)", " ", names_text))
+    found, seen = [], set()
+    for k, r in sorted(((key(s), r) for r in prior for s in [r["name"], *r.get("aka", [])] if key(s)),
+                       key=lambda kr: -len(kr[0])):
+        if k in left and key(r["name"]) not in seen:
+            seen.add(key(r["name"]))
+            found.append(r)
+            for s in [r["name"], *r.get("aka", [])]:
+                left = left.replace(key(s), "")
+    if len(left) > 3:
+        raise LayoutError(f"{what}: names not on the earlier list: {names_text[:100]!r}")
+    return found
+
+
+def _reason_paragraphs(text: str) -> list[str]:
+    """A notice's reason paragraphs: after the names, the ones the notice sets off as a reason (a
+    bullet, which reads as a five-space indent). The four-space paragraphs after them are procedure
+    (where the Mandarin copy is, where to write) and are not quoted."""
+    m = _AMEND_LEAD.search(text)
+    rest = text[m.end():]
+    e = _AMEND_END.search(rest)
+    body = rest[: e.start()] if e else rest
+    paras = re.split(r"\n\s*\n|\n(?= {4,}\S)", body)
+    return [_join(p) for p in paras if re.match(r" {5,}\S", p)]
+
+
+def fr_statements(text: str, doc: dict, prior: list[dict]) -> list[dict]:
+    """The companies a Federal Register notice removes or lists, each with what the notice says.
+    `doc` carries the notice's metadata and `kind` ("annual", "removal", "addition"); `prior` is the
+    list the notice amends, used to find names printed several to a line."""
+    num, kind = doc["document_number"], doc.get("kind")
+    start = int(doc.get("start_page") or 0)
+    base = {"source_doc": num, "source_kind": "federal_register", "published": doc.get("publication_date", ""),
+            "dated": dated(text), "html_url": doc.get("html_url", "")}
+    out: list[dict] = []
+    if kind == "annual":
+        m = _REMOVALS_LEAD.search(text)
+        if not m:
+            return []
+        lead = _verbatim(_lead_sentence(text, m), text, num)
+        rest = text[m.end():]
+        e = _HISTORY_REMOVALS_END.search(rest)
+        page = _page_at(text, m.end(), start)
+        lines, cur = [], ""
+        for line in (rest[: e.start()] if e else rest).split("\n"):
+            if not line.strip() or _MARKER.match(line):
+                continue
+            if cur and _wraps(cur):              # a name cut mid-parenthesis: "(China Marine Info" / "Elec)"
+                cur = f"{cur} {line.strip()}"
+                continue
+            if cur:
+                lines.append(cur)
+            cur = line.strip()
+        if cur:
+            lines.append(cur)
+        names = [parse_entry(x) for x in lines]
+        for name, aka in names:
+            out.append({**base, "event": "removal", "name": name, "aka": aka, "page": page,
+                        "cite": _fr_cite(doc, page), "statements": [
+                            {"role": "notice_text", "scope": "group sentence", "over": len(names), "quote": lead}]})
+        return out
+    if kind not in ("removal", "addition"):
+        raise LayoutError(f"{num}: no removal statements in a {kind!r} notice")
+    m = _AMEND_LEAD.search(text)
+    if not m:
+        raise LayoutError(f"{num}: lead sentence not found")
+    lead = _verbatim(_lead_sentence(text, m), text, num)
+    heads, _reason, page = _amendment_blocks(text, doc)
+    names_text = " ".join(h["text"] for h in heads)
+    if kind == "removal":
+        rows = [(r["name"], r.get("aka", [])) for r in _match_prior(names_text, prior, num)]
+    else:
+        rows = [parse_entry(_split_subsidiaries(h["text"])[0]) for h in heads]
+    stmts = [{"role": "notice_text", "scope": "group sentence" if len(rows) > 1 else "notice",
+              "over": len(rows), "quote": lead}]
+    for para in _reason_paragraphs(text):
+        stmts.append({"role": "reason", "scope": "notice", "over": len(rows),
+                      "quote": _verbatim(para, text, num)})
+    for name, aka in rows:
+        out.append({**base, "event": "removal" if kind == "removal" else "listing", "name": name, "aka": aka,
+                    "page": page, "cite": _fr_cite(doc, page), "statements": stmts})
+    return out
+
+
+def pdf_statements(pages: list[str], rec: dict) -> list[dict]:
+    """The removal section of a DoW list PDF: its heading, quoted as a group reason, and each name
+    under it, with the note printed beside that name when there is one. Empty when the PDF has no
+    removal section."""
+    out: list[dict] = []
+    doc = rec["document"]
+    base = {"source_doc": doc, "source_kind": "dow_pdf", "published": rec.get("release_date", ""), "dated": ""}
+    for page_no, page in enumerate(pages, start=1):
+        fixes = SCAN_ERRATA.get(doc, [])
+        for a, b in fixes:
+            page = page.replace(a, b)
+        lines = page.split("\n")
+        i = next((n for n, line in enumerate(lines) if _PDF_HEADING.match(line)), None)
+        if i is None:
+            continue
+        j = i
+        while j < len(lines) and not _PDF_HEADING_END.search(lines[j]):
+            j += 1
+        if j == len(lines):
+            raise LayoutError(f"{doc} p. {page_no}: removal heading does not end in a known phrase")
+        heading = _verbatim(_join("\n".join(lines[i: j + 1])), page, doc)
+        entries = []
+        for line in lines[j + 1:]:
+            s = line.strip()
+            if not s:
+                continue
+            note = _PDF_NOTE.search(s)
+            name, aka = parse_entry(s[: note.start()] if note else s)
+            if len(name) > 120 or not re.search(r"[A-Za-z]", name):
+                raise LayoutError(f"{doc} p. {page_no}: not a company name: {name[:80]!r}")
+            entries.append((name, aka, note.group(1) if note else ""))
+        if not entries:
+            raise LayoutError(f"{doc} p. {page_no}: removal heading with no names under it")
+        for name, aka, note in entries:
+            stmts = [{"role": "reason", "scope": "group heading", "over": len(entries), "quote": heading}]
+            if note:
+                stmts.append({"role": "reason", "scope": "entity note", "over": 1,
+                              "quote": _verbatim(note, page, doc)})
+            out.append({**base, "event": "removal", "name": name, "aka": aka, "page": page_no,
+                        "cite": f"DoW list PDF ({rec.get('release_date', '')}), p. {page_no}", "statements": stmts})
+    return out
+
+
+# ---- history: the snapshots and documents the completeness check walks ----
+# Each list snapshot is read from its Federal Register notice when there is one, else from the DoW
+# PDF. A snapshot's date is the later of the two publications, so the DoW PDF released a few days
+# (or, in 2024, two months) before its Federal Register copy falls inside the right interval.
+HISTORY_LISTS = [
+    {"id": "2021", "date": "2021-06-28", "fr": "2021-13753", "pdf": "dow-2021-06-03"},
+    {"id": "2022", "date": "2022-10-05", "pdf": "dow-2022-10-05"},
+    {"id": "2024", "date": "2024-04-02", "fr": "2024-06895", "pdf": "dow-2024-01-31"},
+    {"id": "2025", "date": "2025-01-07", "fr": "2025-00070", "pdf": "dow-2025-01-07"},
+    {"id": "2026", "date": "2026-06-10", "fr": "2026-11571", "pdf": "dow-2026-06-08"},
+]
+# Federal Register notices that remove or list a company between snapshots, beyond the annual lists'
+# own removal sections. The 2024-10-29 reprints repeat the 2024-10-23 notices in the right order.
+HISTORY_NOTICES = ["2024-24726", "2024-24723", "2024-25168", "2024-25169", "2024-30018", "2026-22840"]
+
+
+def verbatim(quote: str, text: str, what: str) -> str:
+    """Public form of the word-for-word check, for evidence the editor's decisions quote."""
+    return _verbatim(quote, text, what)
